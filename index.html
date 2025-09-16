@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +13,20 @@
     <link rel="stylesheet" href="styles/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+            <!-- HEADER -->
+
     <header class="site-header">
+
         <div class="header-container">
+
             <div class="logo">Léo Vieux</div>
+
             <nav class="main-navigation">
+
+                    <!-- Bare de navigation -->
                 <ul class="nav-list">
                     <li class="nav-item"><a href="#accueil" class="nav-link">Accueil</a></li>
                     <li class="nav-item"><a href="#cv" class="nav-link">Curriculum Vitæ</a></li>
@@ -26,16 +36,26 @@
                     <li class="nav-item"><a href="#competences" class="nav-link">Compétences</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
+
                 <button class="mobile-menu-toggle" aria-label="Toggle menu">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
                 </button>
+                
             </nav>
+
         </div>
     </header>
 
+
+    <!-- MAIN CONTENT (Le content primaire du site) -->
+
+
     <main class="main-content">
+
+        <!-- Face d'acceuil -->
+
         <section id="accueil" class="hero-section">
             <div class="hero-content">
                 <h1 class="hero-title">Portfolio Léo Vieux</h1>
@@ -44,18 +64,33 @@
             </div>
         </section>
 
+
+        <!-- EXPERIENCE ET CV -->
+
+
         <section id="cv" class="section cv-section">
+
             <div class="section-container">
+
                 <h2 class="section-title">Curriculum Vitæ</h2>
                 <div class="cv-content">
+
+
+                    <!-- Téléchargement du cv en PDF -->
+
                     <div class="cv-download">
                         <a href="#" class="download-button">Télécharger mon CV</a>
                     </div>
+
+
+                    <!-- Partie experience pro -->
+
                     <div class="cv-experience">
                         <h3 class="cv-subtitle">Expérience Professionnelle</h3>
                         <div class="timeline">
 
 
+                            <!-- Carte experience pro -->
                             <div class="timeline-item">
                                 <div class="timeline-date">2022 - 2024</div>
                                 <div class="timeline-content">
@@ -66,6 +101,7 @@
                             </div>
 
 
+                            <!-- Carte experience pro -->
                             <div class="timeline-item">
                                 <div class="timeline-date">2025</div>
                                 <div class="timeline-content">
@@ -88,78 +124,147 @@
             </div>
         </section>
 
+
+            <!-- ATELIERS PROFESSIONNELS -->
+
+            
         <section id="ateliers" class="section ateliers-section">
             <div class="section-container">
+
                 <h2 class="section-title">Ateliers de Professionnels</h2>
+                <h3>Semestre 1</h3>
+
+                <!-- Cartes grid  -->
                 <div class="ateliers-grid">
+
+                        <!-- Les cartes d'ateliers professionnels -->
+
+
+                    <!-- Carte 1 -->
                     <div class="atelier-card">
                         <h3 class="atelier-title">Atelier UX/UI Design</h3>
                         <p class="atelier-description">Formation aux principes du design d'interface utilisateur</p>
                     </div>
+
+                    
+                    <!-- Carte 2 -->
                     <div class="atelier-card">
                         <h3 class="atelier-title">Atelier Développement Front-end</h3>
                         <p class="atelier-description">Perfectionnement aux frameworks JavaScript modernes</p>
                     </div>
+
+
                 </div>
+
             </div>
         </section>
 
-<section id="stage" class="section stage-section">
-  <div class="section-container">
-    <h2 class="section-title">Stage</h2>
-    <div class="stage-content">
-      <div class="stage-info">
-        <h3 class="stage-company">Campus Connecté – Mairie de Saint-Gaudens</h3>
-        <p class="stage-duration">Mai 2025 - Juin 2025</p>
-        <p class="stage-description">
-          Participation au développement de deux applications web :
-          <strong>Marcel Présence 3000</strong> (gestion de la présence des étudiants)
-          et <strong>Massin Tout Petit Plus</strong> (gestion des événements et rendez-vous).
-          Mise en place d’un serveur Ubuntu avec Nginx, PHP et MariaDB, intégration de GitLab,
-          conception de maquettes, développement de fonctionnalités (sessions sécurisées, génération de QR codes,
-          gestion des absences, emploi du temps, événements) et rédaction de documentation technique.
-        </p>
-        <ul class="stage-skills">
-          <li class="skill-item">PHP 8</li>
-          <li class="skill-item">MySQL / MariaDB</li>
-          <li class="skill-item">HTML / CSS</li>
-          <li class="skill-item">JavaScript</li>
-          <li class="skill-item">Git / GitLab</li>
-          <li class="skill-item">Linux (Ubuntu Server, SSH, Nginx)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+
+        <!-- INFORMATIONS SUR LES STAGES -->
+
+
+        <section id="stage" class="section stage-section">
+        <div class="section-container">
+
+            <h2 class="section-title">Stage</h2>
+
+
+                <!-- Carte stage 1 -->
+
+            <div class="stage-content">
+            <div class="stage-info">
+
+                <!-- Info stage -->
+                <h3 class="stage-company">Campus Connecté – Mairie de Saint-Gaudens</h3>
+                <p class="stage-duration">Mai 2025 - Juin 2025</p>
+
+                <!-- Description du stage -->
+                <p class="stage-description">
+                Participation au développement de deux applications web :
+                <strong>Marcel Présence 3000</strong> (gestion de la présence des étudiants)
+                et <strong>Massin Tout Petit Plus</strong> (gestion des événements et rendez-vous).
+                Mise en place d’un serveur Ubuntu avec Nginx, PHP et MariaDB, intégration de GitLab,
+                conception de maquettes, développement de fonctionnalités (sessions sécurisées, génération de QR codes,
+                gestion des absences, emploi du temps, événements) et rédaction de documentation technique.
+                </p>
+
+                <!-- Petites bulles des compétences utilisés durant le stage -->
+                <ul class="stage-skills">
+                    <li class="skill-item">PHP 8</li>
+                    <li class="skill-item">MySQL / MariaDB</li>
+                    <li class="skill-item">HTML / CSS</li>
+                    <li class="skill-item">JavaScript</li>
+                    <li class="skill-item">Git / GitLab</li>
+                    <li class="skill-item">Linux (Ubuntu Server, SSH, Nginx)</li>
+                </ul>
+
+            </div>
+            </div>
+
+        </div>
+        </section>
+
+
+        <!-- VEILE TECHNOLOGIQUE :/ c'est terrible -->
+
 
         <section id="veille" class="section veille-section">
+
             <div class="section-container">
+
                 <h2 class="section-title">Veille Technologique</h2>
-                <div class="veille-content">
+
+                <div class="veille-content">    
+
+                    <!-- Information sur la veille avec la question ect -->
                     <div class="veille-intro">
                         <h3 class="veille-topic">Intelligence Artificielle et Développement Web</h3>
                         <p class="veille-description">Veille sur l'intégration de l'IA dans les processus de développement web et les nouvelles tendances technologiques.</p>
                     </div>
+
+                    <!-- Les articles -->
+
                     <div class="veille-articles">
+
+                        <!-- article 1 -->
                         <article class="veille-article">
                             <h4 class="article-title">Les transformers et leur application dans le NLP</h4>
                             <p class="article-date">15 septembre 2023</p>
                             <p class="article-summary">Analyse des modèles de traitement du langage naturel et leur utilisation dans les interfaces conversationnelles.</p>
                         </article>
+
+                        <!-- article 2 -->
                         <article class="veille-article">
                             <h4 class="article-title">Web3 et décentralisation</h4>
                             <p class="article-date">8 septembre 2023</p>
                             <p class="article-summary">Étude des implications des technologies blockchain sur le développement web et les nouvelles opportunités.</p>
                         </article>
+
                     </div>
+
                 </div>
             </div>
+
         </section>
 
+
+        <!-- LES COMPETENCES QUE J'AI DEVELOPPE -->
+
+
         <section id="competences" class="section competences-section">
+
+            <!-- Section contenant le titre + les différentes cartes -->
             <div class="section-container">
+
+                <!-- Titre -->
                 <h2 class="section-title">Mes Compétences Développées</h2>
+                
+
+                <!-- Les cartes de compétences -->
                 <div class="competences-grid">
+
+
+                    <!-- carte 1 -->
                     <div class="competence-category">
                         <h3 class="category-title">Développement Front-end</h3>
                         <ul class="competence-list">
@@ -169,6 +274,9 @@
                             <li class="competence-item">Responsive Design</li>
                         </ul>
                     </div>
+
+
+                    <!-- carte 2 -->
                     <div class="competence-category">
                         <h3 class="category-title">Développement Back-end</h3>
                         <ul class="competence-list">
@@ -178,6 +286,9 @@
                             <li class="competence-item">API REST</li>
                         </ul>
                     </div>
+
+
+                    <!-- carte 3 -->
                     <div class="competence-category">
                         <h3 class="category-title">Design & UX/UI</h3>
                         <ul class="competence-list">
@@ -187,14 +298,28 @@
                             <li class="competence-item">Prototypage</li>
                         </ul>
                     </div>
+
+
+
                 </div>
+
             </div>
+
         </section>
 
+
+        <!-- LA PARTIE ME CONTACTER -->
+
+
         <section id="contact" class="section contact-section">
+
             <div class="section-container">
+
                 <h2 class="section-title">Contact</h2>
                 <div class="contact-content">
+
+
+                    <!-- Informations personnelles -->
                     <div class="contact-info">
                         <h3 class="contact-subtitle">Restons en contact</h3>
                         <p class="contact-description">N'hésitez pas à me contacter pour discuter de projets ou d'opportunités de collaboration.</p>
@@ -203,6 +328,9 @@
                             <p class="contact-phone">Téléphone: +33 6 12 34 56 78</p>
                         </div>
                     </div>
+
+
+                    <!-- Informations personnelles -->
                     <form class="contact-form">
                         <div class="form-group">
                             <label for="name" class="form-label">Nom</label>
@@ -218,8 +346,11 @@
                         </div>
                         <button type="submit" class="submit-button">Envoyer</button>
                     </form>
+
                 </div>
+
             </div>
+
         </section>
     </main>
 
