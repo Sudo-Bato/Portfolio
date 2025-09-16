@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Léo Vieux</title>
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/components/header.css">
+    <link rel="stylesheet" href="styles/components/navigation.css">
+    <link rel="stylesheet" href="styles/components/sections.css">
+    <link rel="stylesheet" href="styles/components/footer.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">Léo Vieux</div>
+            <nav class="main-navigation">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#accueil" class="nav-link">Accueil</a></li>
+                    <li class="nav-item"><a href="#cv" class="nav-link">Curriculum Vitæ</a></li>
+                    <li class="nav-item"><a href="#ateliers" class="nav-link">Ateliers</a></li>
+                    <li class="nav-item"><a href="#stage" class="nav-link">Stage</a></li>
+                    <li class="nav-item"><a href="#veille" class="nav-link">Veille Technologique</a></li>
+                    <li class="nav-item"><a href="#competences" class="nav-link">Compétences</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section id="accueil" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Portfolio Léo Vieux</h1>
+                <p class="hero-subtitle">Étudiant Développeur</p>
+                <a href="#contact" class="cta-button">Me contacter</a>
+            </div>
+        </section>
+
+        <section id="cv" class="section cv-section">
+            <div class="section-container">
+                <h2 class="section-title">Curriculum Vitæ</h2>
+                <div class="cv-content">
+                    <div class="cv-download">
+                        <a href="#" class="download-button">Télécharger mon CV</a>
+                    </div>
+                    <div class="cv-experience">
+                        <h3 class="cv-subtitle">Expérience Professionnelle</h3>
+                        <div class="timeline">
+
+
+                            <div class="timeline-item">
+                                <div class="timeline-date">2022 - 2024</div>
+                                <div class="timeline-content">
+                                    <h4 class="timeline-title">Dessin assisté par ordinateur (Chaudronnerie industrielle) </h4>
+                                    <p class="timeline-description">Fabrication de pièces de metal sur mesure en utilisant 
+                                    des outils de DAO/CAO (Conception Assistée par Ordinateur) en stage pour divers entreprise de chaudronnerie</p>
+                                </div>
+                            </div>
+
+
+                            <div class="timeline-item">
+                                <div class="timeline-date">2025</div>
+                                <div class="timeline-content">
+                                    <h4 class="timeline-title">Stage Développement d'application web</h4>
+                                    <p class="timeline-description">
+                                        Entreprise : Campus Connecté Saint Gaudens
+                                         - 
+                                        Conception et déploiement d’une application web à partir de rien (HTML,
+                                        PHP, base de données) pour la gestion d’étudiants : suivi des présences via
+                                        QR codes, gestion des rendez-vous, mise en place d’un serveur Linux Nginx,
+                                        php, MariaDB. 
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ateliers" class="section ateliers-section">
+            <div class="section-container">
+                <h2 class="section-title">Ateliers de Professionnels</h2>
+                <div class="ateliers-grid">
+                    <div class="atelier-card">
+                        <h3 class="atelier-title">Atelier UX/UI Design</h3>
+                        <p class="atelier-description">Formation aux principes du design d'interface utilisateur</p>
+                    </div>
+                    <div class="atelier-card">
+                        <h3 class="atelier-title">Atelier Développement Front-end</h3>
+                        <p class="atelier-description">Perfectionnement aux frameworks JavaScript modernes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="stage" class="section stage-section">
+  <div class="section-container">
+    <h2 class="section-title">Stage</h2>
+    <div class="stage-content">
+      <div class="stage-info">
+        <h3 class="stage-company">Campus Connecté – Mairie de Saint-Gaudens</h3>
+        <p class="stage-duration">Mai 2025 - Juin 2025</p>
+        <p class="stage-description">
+          Participation au développement de deux applications web :
+          <strong>Marcel Présence 3000</strong> (gestion de la présence des étudiants)
+          et <strong>Massin Tout Petit Plus</strong> (gestion des événements et rendez-vous).
+          Mise en place d’un serveur Ubuntu avec Nginx, PHP et MariaDB, intégration de GitLab,
+          conception de maquettes, développement de fonctionnalités (sessions sécurisées, génération de QR codes,
+          gestion des absences, emploi du temps, événements) et rédaction de documentation technique.
+        </p>
+        <ul class="stage-skills">
+          <li class="skill-item">PHP 8</li>
+          <li class="skill-item">MySQL / MariaDB</li>
+          <li class="skill-item">HTML / CSS</li>
+          <li class="skill-item">JavaScript</li>
+          <li class="skill-item">Git / GitLab</li>
+          <li class="skill-item">Linux (Ubuntu Server, SSH, Nginx)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <section id="veille" class="section veille-section">
+            <div class="section-container">
+                <h2 class="section-title">Veille Technologique</h2>
+                <div class="veille-content">
+                    <div class="veille-intro">
+                        <h3 class="veille-topic">Intelligence Artificielle et Développement Web</h3>
+                        <p class="veille-description">Veille sur l'intégration de l'IA dans les processus de développement web et les nouvelles tendances technologiques.</p>
+                    </div>
+                    <div class="veille-articles">
+                        <article class="veille-article">
+                            <h4 class="article-title">Les transformers et leur application dans le NLP</h4>
+                            <p class="article-date">15 septembre 2023</p>
+                            <p class="article-summary">Analyse des modèles de traitement du langage naturel et leur utilisation dans les interfaces conversationnelles.</p>
+                        </article>
+                        <article class="veille-article">
+                            <h4 class="article-title">Web3 et décentralisation</h4>
+                            <p class="article-date">8 septembre 2023</p>
+                            <p class="article-summary">Étude des implications des technologies blockchain sur le développement web et les nouvelles opportunités.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="competences" class="section competences-section">
+            <div class="section-container">
+                <h2 class="section-title">Mes Compétences Développées</h2>
+                <div class="competences-grid">
+                    <div class="competence-category">
+                        <h3 class="category-title">Développement Front-end</h3>
+                        <ul class="competence-list">
+                            <li class="competence-item">HTML5/CSS3</li>
+                            <li class="competence-item">JavaScript ES6+</li>
+                            <li class="competence-item">React.js</li>
+                            <li class="competence-item">Responsive Design</li>
+                        </ul>
+                    </div>
+                    <div class="competence-category">
+                        <h3 class="category-title">Développement Back-end</h3>
+                        <ul class="competence-list">
+                            <li class="competence-item">Node.js</li>
+                            <li class="competence-item">Express</li>
+                            <li class="competence-item">MongoDB</li>
+                            <li class="competence-item">API REST</li>
+                        </ul>
+                    </div>
+                    <div class="competence-category">
+                        <h3 class="category-title">Design & UX/UI</h3>
+                        <ul class="competence-list">
+                            <li class="competence-item">Figma</li>
+                            <li class="competence-item">Adobe XD</li>
+                            <li class="competence-item">Design System</li>
+                            <li class="competence-item">Prototypage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div class="section-container">
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3 class="contact-subtitle">Restons en contact</h3>
+                        <p class="contact-description">N'hésitez pas à me contacter pour discuter de projets ou d'opportunités de collaboration.</p>
+                        <div class="contact-details">
+                            <p class="contact-email">Email: leo.vieux@example.com</p>
+                            <p class="contact-phone">Téléphone: +33 6 12 34 56 78</p>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nom</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-textarea" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p class="copyright">&copy; 2023 Léo Vieux. Tous droits réservés.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

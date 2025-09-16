@@ -1,0 +1,32 @@
+:root {
+    /* Couleurs */
+    --color-text: #104547;
+    --color-nav-bg: #4B5358;
+    --color-nav-hover: #727072;
+    --color-accent: #AF929D;
+    --color-bg: #D9D6EF;
+    
+    /* Polices */
+    --font-title: 'Montserrat', sans-serif;
+    --font-subtitle: 'Raleway', sans-serif;
+    --font-text: 'Open Sans', sans-serif;
+    
+    /* Tailles de police */
+    --size-title-large: 48px;
+    --size-title-medium: 36px;
+    --size-title-small: 28px;
+    --size-subtitle: 24px;
+    --size-text-large: 18px;
+    --size-text: 16px;
+    
+    /* Espacements */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    --spacing-xxl: 64px;
+    
+    /* Bordures */
+    --border-radius: 8px;
+}
