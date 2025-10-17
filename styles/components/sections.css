@@ -436,3 +436,37 @@
         font-size: var(--size-text-large);
     }
 }
+
+/* --- Nouveaux Styles pour la Section Contact Centrée (à ajouter à sections.css) --- */
+
+/* Ce style désactive la grille pour la section contact si elle est utilisée uniquement 
+   pour centrer une seule carte */
+.contact-section .contact-content {
+    display: block; /* Supprime la grille 1fr 1fr pour cette section */
+}
+
+.contact-card-wrapper {
+    /* Centre la carte dans l'espace disponible */
+    display: flex;
+    justify-content: center;
+}
+
+.contact-card {
+    /* Définit la taille maximale pour la carte et lui donne le style de vos autres cartes */
+    max-width: 600px; /* Limite la largeur pour ne pas prendre toute la page */
+    width: 100%;
+    
+    background-color: white;
+    padding: var(--spacing-xxl); /* Rendre le padding plus généreux pour une grande carte */
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    /* Retrait des styles de grille hérités */
+    grid-column: 1 / -1; 
+}
+
+/* Ajustement pour les très petits écrans si nécessaire */
+@media (max-width: 650px) {
+    .contact-card {
+        padding: var(--spacing-lg);
+    }
+}
