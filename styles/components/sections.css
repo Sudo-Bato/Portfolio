@@ -74,7 +74,7 @@
 }
 
 .cta-button:hover {
-    background-color: var(--color-text);
+    background-color: color-mix(in oklch, var(--color-accent), black 20%);
 }
 
 /* CV Section */
@@ -102,7 +102,7 @@
 }
 
 .download-button:hover {
-    background-color: var(--color-text);
+    background-color: color-mix(in oklch, var(--color-accent), black 20%);
 }
 
 .cv-subtitle {
@@ -404,7 +404,7 @@
 
 .submit-button {
     padding: var(--spacing-sm) var(--spacing-lg);
-    background-color: var(--color-accent);
+    background-color: color-mix(in oklch, var(--color-accent), black 20%);
     color: white;
     font-family: var(--font-text);
     font-size: var(--size-text);
@@ -470,3 +470,57 @@
         padding: var(--spacing-lg);
     }
 }
+
+/* NOUVEAU STYLE POUR LES DEUX COLONNES DE PROJETS */
+.projets-categories-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes de même largeur */
+    gap: var(--spacing-xl);
+}
+
+/* Titre de sous-catégorie (réutilisation de la classe existante mais ajustement pour le contexte) */
+.projets-category .category-subtitle {
+    font-family: var(--font-subtitle);
+    font-size: var(--size-subtitle); /* Taille de sous-titre */
+    color: var(--color-accent);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-accent);
+}
+
+/* Ajustement pour le mobile : les deux colonnes deviennent une seule */
+@media (max-width: 1000px) {
+    .projets-categories-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ... styles existants avant .project-button ... */
+
+/* NOUVEAU STYLE POUR LE BOUTON DES PROJETS */
+.project-button {
+    /* Style pour ressembler aux badges de compétences (Skill-item) */
+    display: inline-block;
+    align-self: flex-start;
+    padding: var(--spacing-xs) var(--spacing-sm); /* Reprend le padding des badges */
+    margin-top: var(--spacing-sm); 
+    
+    /* Couleurs et formes des badges */
+    background-color: var(--color-accent); /* Fond accentué (comme .skill-item) */
+    color: white; /* Texte blanc (comme .skill-item) */
+    border-radius: 20px; /* Bordure ronde (comme .skill-item) */
+    
+    font-family: var(--font-text);
+    font-size: var(--size-text);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.project-button:hover {
+    background-color: color-mix(in oklch, var(--color-accent), black 20%);
+}
+
+/* ... le reste du fichier inchangé ... */
