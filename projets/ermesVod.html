@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ermes Solutions - VOD Platform</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../styles/custom.css">
+    <!-- Highlight.js for code blocks -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <span class="text-primary">&lt;</span>Léo<span class="text-white">Vieux</span><span
+                    class="text-primary">/&gt;</span>
+            </a>
+            <a href="../index.html" class="btn btn-outline-light rounded-pill btn-sm">
+                ← Retour au Portfolio
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="section pt-5 pb-0 min-vh-50 d-flex align-items-center">
+        <div class="container mt-5 pt-5">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <span class="badge bg-primary bg-opacity-10 text-primary mb-3 px-3 py-2 rounded-pill">Janvier 2026 -
+                        Février 2026</span>
+                    <h1 class="display-4 fw-bold mb-4">Plateforme VOD Ermes</h1>
+                    <p class="lead text-muted mb-4">
+                        Conception et déploiement d'une plateforme de streaming vidéo sécurisée (Netflix-like), incluant
+                        une API de transcodage automatisé et un modèle d'abonnements.
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+                        <span class="badge border border-secondary text-secondary bg-transparent">Vue.js 3</span>
+                        <span class="badge border border-secondary text-secondary bg-transparent">Node.js</span>
+                        <span class="badge border border-secondary text-secondary bg-transparent">Docker</span>
+                        <span class="badge border border-secondary text-secondary bg-transparent">FFmpeg</span>
+                        <span class="badge border border-secondary text-secondary bg-transparent">HLS Streaming</span>
+                        <span class="badge border border-secondary text-secondary bg-transparent">VPS OVH</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Screenshot Carousel -->
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-10">
+                    <div id="projectCarousel" class="carousel slide card glass overflow-hidden shadow-lg"
+                        data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="0"
+                                class="active"></button>
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="2"></button>
+                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="../assets/img/projects/ermes/home.png" class="d-block w-100"
+                                    alt="Interface Abonnés">
+                                <div class="carousel-caption d-none d-md-block glass rounded px-3 py-2 text-white">
+                                    <h5 class="mb-0">Interface Abonnés (Netflix-style)</h5>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../assets/img/projects/ermes/login.png" class="d-block w-100"
+                                    alt="Page Login">
+                                <div class="carousel-caption d-none d-md-block glass rounded px-3 py-2 text-white">
+                                    <h5 class="mb-0">Authentification Sécurisée</h5>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../assets/img/projects/ermes/paywall.png" class="d-block w-100" alt="Paywall">
+                                <div class="carousel-caption d-none d-md-block glass rounded px-3 py-2 text-white">
+                                    <h5 class="mb-0">Paywall & Gestion d'Abonnement</h5>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../assets/img/projects/ermes/dashboard.png" class="d-block w-100"
+                                    alt="Dashboard Admin">
+                                <div class="carousel-caption d-none d-md-block glass rounded px-3 py-2 text-white">
+                                    <h5 class="mb-0">Dashboard Administrateur</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Précédent</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Suivant</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details -->
+    <section class="section py-5">
+        <div class="container">
+            <div class="row g-5">
+
+                <!-- Sidebar / Quick Info -->
+                <div class="col-lg-4 order-lg-2">
+                    <div class="card glass p-4 sticky-top text-white" style="top: 100px; z-index: 1;">
+                        <h3 class="h5 text-primary mb-4">Fiche Technique</h3>
+
+                        <div class="mb-4">
+                            <h4 class="h6 text-muted text-uppercase small ls-1">Rôle</h4>
+                            <p>Développeur Fullstack & DevOps</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="h6 text-muted text-uppercase small ls-1">Client</h4>
+                            <p>Ermes Solutions (Santé & Bien-être)</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="h6 text-muted text-uppercase small ls-1">Objectifs</h4>
+                            <ul class="list-unstyled small text-white-50">
+                                <li class="mb-2">✅ Suppression des commissions tierces</li>
+                                <li class="mb-2">✅ Sécurisation de la PI (DRM/Token)</li>
+                                <li class="mb-2">✅ Expérience utilisateur premium</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="h6 text-muted text-uppercase small ls-1">Code & Démo</h4>
+                            <p class="small text-muted mb-0">
+                                <em>Projet privé (propriété de l'entreprise). Code source non public.</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-8 order-lg-1">
+
+                    <!-- 1. Contexte -->
+                    <div class="mb-5">
+                        <h2 class="h3 text-white mb-3">1. Contexte & Problématique</h2>
+                        <p class="text-muted">
+                            L'entreprise souhaitait s'affranchir des plateformes tierces comme Patreon pour proposer ses
+                            formations et séances d'hypnose.
+                            Le défi était technique et économique : <strong>comment héberger et diffuser des centaines
+                                de vidéos lourdes de manière sécurisée sans exploser les coûts d'infrastructure
+                                ?</strong>
+                        </p>
+                        <div class="alert glass border-primary border-opacity-25 text-white-50">
+                            <strong>Solution retenue :</strong> Migration d'un hébergement mutualisé vers un <strong>VPS
+                                Linux</strong> maître, permettant l'installation d'une stack personnalisée
+                            (Node.js/FFmpeg) pour un coût fixe (~5€/mois).
+                        </div>
+                    </div>
+
+                    <!-- 2. Architecture -->
+                    <div class="mb-5">
+                        <h2 class="h3 text-white mb-3">2. Architecture Technique</h2>
+                        <p class="text-muted mb-4">
+                            J'ai conçu une architecture de micro-services conteneurisée avec Docker pour garantir la
+                            portabilité entre le développement (macOS) et la production (Ubuntu VPS).
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card glass h-100 p-3">
+                                    <h5 class="h6 text-primary">🖥️ Frontend (Vue.js 3)</h5>
+                                    <p class="small text-muted mb-0">SPA réactive avec Vue Router. Intègre
+                                        <a href="https://hlsjs.video-dev.org/demo/" target="_blank"
+                                            class="text-primary text-decoration-none">hls.js</a> pour lire les flux
+                                        vidéos sur tous les navigateurs.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card glass h-100 p-3">
+                                    <h5 class="h6 text-primary">⚙️ Backend (Node.js)</h5>
+                                    <p class="small text-muted mb-0">API Express gérant l'auth (JWT), le transcodage
+                                        (FFmpeg) et la distribution des fichiers statiques.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card glass h-100 p-3">
+                                    <h5 class="h6 text-primary">🔐 Sécurité</h5>
+                                    <p class="small text-muted mb-0">Reverse Proxy Caddy (SSL Auto), Fail2Ban pour le
+                                        SSH, et RBAC (Role-Based Access Control) pour l'API.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card glass h-100 p-3">
+                                    <h5 class="h6 text-primary">💾 Stockage & BDD</h5>
+                                    <p class="small text-muted mb-0">MySQL 8 pour les données utilisateurs. Volume
+                                        Docker partagé pour les Teraoctets de vidéos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Key Features -->
+                    <div class="mb-5">
+                        <h2 class="h3 text-white mb-3">3. Fonctionnalités Clés</h2>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="me-3 mt-1 text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    class="bi bi-camera-video" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.461a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="h5 text-white">Pipeline d'Ingestion "Zéro Clic"</h4>
+                                <p class="text-muted small">
+                                    L'administrateur dépose simplement un fichier <code>.mp4</code> via SFTP. Un
+                                    "Watcher" (basé sur <a href="https://medium.com/@ashusingh584/chokidar-11290855e2cb"
+                                        target="_blank" class="text-primary text-decoration-none">chokidar</a>) détecte
+                                    le fichier, lance un worker
+                                    FFmpeg pour le convertir en <strong>HLS (.m3u8)</strong>, génère les miniatures, et
+                                    met à jour la base de données.
+                                    <br><span
+                                        class="badge bg-secondary bg-opacity-10 text-secondary mt-1">Automatisé</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="me-3 mt-1 text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    class="bi bi-shield-lock" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="h5 text-white">Paywall Intelligent & RBAC</h4>
+                                <p class="text-muted small">
+                                    Protection des routes Frontend et Backend. Le token JWT contient l'état de
+                                    l'abonnement. Si un utilisateur non-abonné tente d'accéder à une vidéo, il est
+                                    redirigé vers une page "Subscribe" (Paywall). Le système gère aussi les expirations
+                                    d'abonnement automatiquement ("Lazy Check").
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start">
+                            <div class="me-3 mt-1 text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    class="bi bi-speedometer2" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02l-.755.755a.389.389 0 0 0 .22.68c.075.006.15-.015.207-.057l.755-.755a.389.389 0 0 0 .1-.527zM8 1a6.996 6.996 0 0 0-7 7c0 3.209 2.11 5.867 5.035 6.703a.5.5 0 1 1-.271.961A7.996 7.996 0 0 1 8 0c4.418 0 8 3.582 8 8a7.996 7.996 0 0 1-1.025 3.961.5.5 0 0 1-.892-.451A6.996 6.996 0 0 1 8 1z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="h5 text-white">Performance & Optimisation</h4>
+                                <p class="text-muted small">
+                                    Utilisation de <a href="https://hlsjs.video-dev.org/demo/" target="_blank"
+                                        class="text-primary text-decoration-none"><strong>hls.js</strong></a> pour le
+                                    streaming adaptatif (la qualité
+                                    s'ajuste au réseau du client). File d'attente (Queue) pour l'encodage afin d'éviter
+                                    de saturer le CPU du serveur si plusieurs vidéos sont uploadées en même temps.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- 4. Production Issues -->
+                    <div class="mb-5">
+                        <h2 class="h3 text-white mb-3">4. DevOps : Enjeux de Production</h2>
+                        <div class="card glass p-4">
+                            <p class="text-white-50 mb-3">
+                                Le passage du développement local (Docker Mac) au VPS de production (Linux) a nécessité
+                                de résoudre plusieurs défis critiques :
+                            </p>
+
+                            <h5 class="h6 text-primary mt-3">Problème CORS & Mixed Content</h5>
+                            <p class="small text-muted">
+                                Le reverse proxy SSL (HTTPS) bloquait les appels vers l'API interne configurée en HTTP.
+                                <br><strong>Fix :</strong> Reconstruction de l'image Docker frontend avec les variables
+                                d'environnement de production pointant vers le domaine sécurisé.
+                            </p>
+
+                            <h5 class="h6 text-primary mt-3">Persistance des Volumes</h5>
+                            <p class="small text-muted">
+                                Le conteneur Docker ne "voyait" pas les fichiers uploadés via SFTP.
+                                <br><strong>Fix :</strong> Correction du mapping des volumes dans
+                                <code>docker-compose.yml</code> pour lier le dossier <code>/home/user/videos</code> de
+                                l'hôte au dossier <code>/app/raw</code> du conteneur.
+                            </p>
+
+                            <h5 class="h6 text-primary mt-3">Routing SPA (Nginx)</h5>
+                            <p class="small text-muted">
+                                Rafraîchir la page renvoyait une erreur 404 Nginx.
+                                <br><strong>Fix :</strong> Ajout de la directive
+                                <code>try_files $uri $uri/ /index.html;</code> pour laisser Vue Router gérer l'URL.
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 glass border-top border-secondary border-opacity-10">
+        <div class="container">
+            <p class="mb-0 text-muted small">&copy; 2026 Léo Vieux. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>
