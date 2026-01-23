@@ -1,80 +1,155 @@
-<section id="competences" class="section projets-section">
-    <div class="section-container">
+<section id="competences" class="section py-5">
+    <div class="container">
+        <h2 class="section-title mb-5 text-center w-100">Mes Projets</h2>
 
-        <h2 class="section-title">Mes Projets</h2>
+        <div class="row g-5">
+            <!-- Projets Personnels -->
+            <div class="col-12">
+                <h3 class="h4 mb-4 text-primary border-bottom border-primary border-opacity-25 pb-2 d-inline-block">
+                    Projets Personnels (Hors Cadre Scolaire)</h3>
+                <div class="row g-4">
 
-        <div class="projets-categories-container">
-            
-            <div class="projets-category">
-                <h3 class="category-subtitle">Projets Personnels (Hors Cadre Scolaire)</h3>
-                <div class="projets-grid-small ateliers-grid">
-                    
-                    <div class="atelier-card projet-card">
-                        <h4 class="atelier-title">Infrastructure HomeLab Sécurisée et Autonome</h4>
-                        <p class="atelier-description">
-                            Conception et déploiement d'un serveur personnel sous <strong>Ubuntu Server</strong> et <strong>Docker</strong>. Mise en place d'une sécurité <strong>Zero Trust (Cloudflare Tunnel)</strong> et d'un <strong>WAF</strong> pour auto-héberger des services critiques (<strong>Immich</strong>, <strong>Vaultwarden</strong>) et reprendre le contrôle de mes données.
-                        </p>
-                        <a href="projets/homeLab.html" target="_blank" class="project-button">Détails du projet</a>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card glass h-100 d-flex flex-column">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title h5 mb-3 text-white">TimeTracker Desktop App</h4>
+                                <p class="card-text flex-grow-1 small">
+                                    Développement d'une application de bureau "Offline" avec
+                                    <strong>Electron</strong>, <strong>React</strong> et <strong>TypeScript</strong>.
+                                    Gestion du temps, statistiques et support multiplateforme (Mac/Win).
+                                </p>
+                                <a href="projets/timeTracker.html" target="_blank"
+                                    class="btn btn-outline-light btn-sm mt-3 stretched-link">Détails du projet</a>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="atelier-card projet-card">
-                        <h4 class="atelier-title">Jeu 2D Space Shooter (Pygame)</h4>
-                        <p class="atelier-description">
-                            Création d'un jeu de tir spatial 2D simple en <strong>Python</strong>, utilisant la bibliothèque <strong>Pygame-ce</strong> pour la gestion des événements, des collisions (tirs/astéroïdes) et du rendu graphique.
-                        </p>
-                        <a href="projets/spaceShooter.html" target="_blank" class="project-button">Détails du projet</a>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card glass h-100 d-flex flex-column">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title h5 mb-3 text-white">Infrastructure HomeLab</h4>
+                                <p class="card-text flex-grow-1 small">
+                                    Conception et déploiement d'un serveur personnel sous <strong>Ubuntu Server</strong>
+                                    et <strong>Docker</strong>. Mise en place d'une sécurité <strong>Zero Trust</strong>
+                                    et d'un <strong>WAF</strong> pour auto-héberger des services critiques.
+                                </p>
+                                <a href="projets/homeLab.html" target="_blank"
+                                    class="btn btn-outline-light btn-sm mt-3 stretched-link">Détails du projet</a>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="atelier-card projet-card">
-                        <h4 class="atelier-title">Configuration de Serveur Minecraft et DNS</h4>
-                        <p class="atelier-description">
-                            Installation et configuration d'un <strong>Serveur Minecraft</strong>. Mise en place d'un système de <strong>redirection de ports (port forwarding)</strong> et association d'un nom de domaine <strong>DNS</strong> à mon adresse IP dynamique.
-                        </p>
-                        <a href="projets/minecraftDns.html" target="_blank" class="project-button">Détails du projet</a>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card glass h-100 d-flex flex-column">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title h5 mb-3 text-white">Jeu 2D Space Shooter</h4>
+                                <p class="card-text flex-grow-1 small">
+                                    Création d'un jeu de tir spatial 2D simple en <strong>Python</strong>, utilisant la
+                                    bibliothèque <strong>Pygame-ce</strong> pour la gestion des événements, des
+                                    collisions et du rendu graphique.
+                                </p>
+                                <a href="projets/spaceShooter.html" target="_blank"
+                                    class="btn btn-outline-light btn-sm mt-3 stretched-link">Détails du projet</a>
+                            </div>
+                        </div>
                     </div>
-                    
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card glass h-100 d-flex flex-column">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title h5 mb-3 text-white">Serveur Minecraft et DNS</h4>
+                                <p class="card-text flex-grow-1 small">
+                                    Installation et configuration d'un <strong>Serveur Minecraft</strong>. Mise en place
+                                    d'un système de <strong>port forwarding</strong> et association d'un nom de domaine
+                                    <strong>DNS</strong>.
+                                </p>
+                                <a href="projets/minecraftDns.html" target="_blank"
+                                    class="btn btn-outline-light btn-sm mt-3 stretched-link">Détails du projet</a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            
-            <div class="projets-category">
-                <h3 class="category-subtitle">Projets de Cours & Stages (BTS SIO SLAM)</h3>
-                <div class="projets-grid-small ateliers-grid">
-                    
-                    <div class="atelier-card projet-card">
-                        <h4 class="atelier-title">Projet Locaboard</h4>
-                        <p class="atelier-description">
-                            Construction d'un site dynamique avec <strong>HTML, CSS, PHP et JavaScript</strong>. Travail sur la valorisation de l'image de l'organisation.
-                        </p>
-                        <a href="projets/locaboard.html" target="_blank" class="project-button">Détails du projet</a>
+
+            <!-- Projets SIO -->
+            <div class="col-12">
+                <h3 class="h4 mb-4 text-secondary border-bottom border-secondary border-opacity-25 pb-2 d-inline-block">
+                    Projets de Cours & Stages (BTS SIO SLAM)</h3>
+                <div class="row g-4">
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card glass h-100 d-flex flex-column">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title h6 mb-3 text-white">Plateforme VOD Ermes</h4>
+                                <p class="card-text flex-grow-1 small">
+                                    Développement d'un <strong>Netflix-like</strong> pour la formation : Streaming HLS,
+                                    API Node.js/FFmpeg, Frontend Vue.js, Auth RBAC et déploiement Docker sur VPS OVH.
+                                </p>
+                                <a href="projets/ermesVod.html" target="_blank"
+                                    class="btn btn-outline-light btn-sm mt-3 stretched-link">Détails du projet</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="atelier-card projet-card">
-                        <h4 class="atelier-title">Site Boutique Pic du Midi (CMS)</h4>
-                        <p class="atelier-description">
-                            Création d'une boutique en ligne avec <strong>CMS WordPress</strong> et l'outil <strong>GanttProject</strong>. Application du mode de projet classique, gestion de la charte graphique et des sauvegardes.
-                        </p>
-                        <a href="projets/picDuMidiShop.html" target="_blank" class="project-button">Détails du projet</a>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card glass h-100 d-flex flex-column">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title h6 mb-3 text-white">Projet Locaboard</h4>
+                                <p class="card-text flex-grow-1 small">
+                                    Construction d'un site dynamique avec <strong>HTML, CSS, PHP et JavaScript</strong>.
+                                    Travail sur la valorisation de l'image de l'organisation.
+                                </p>
+                                <a href="projets/locaboard.html" target="_blank"
+                                    class="btn btn-outline-light btn-sm mt-3 stretched-link">Détails du projet</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="atelier-card projet-card">
-                        <h4 class="atelier-title">Projet Netcar (Architecture MVC)</h4>
-                        <p class="atelier-description">
-                            Développement d'une solution applicative en utilisant l'architecture <strong>MVC</strong>, la gestion de versions (<strong>Git</strong>) et le langage d'interrogation de données (<strong>SQL</strong>).
-                        </p>
-                        <a href="projets/netCar.html" target="_blank" class="project-button">Détails du projet</a>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card glass h-100 d-flex flex-column">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title h6 mb-3 text-white">Site Boutique Pic du Midi</h4>
+                                <p class="card-text flex-grow-1 small">
+                                    Création d'une boutique en ligne avec <strong>CMS WordPress</strong>. Gestion de la
+                                    charte graphique et des sauvegardes.
+                                </p>
+                                <a href="projets/picDuMidiShop.html" target="_blank"
+                                    class="btn btn-outline-light btn-sm mt-3 stretched-link">Détails du projet</a>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="atelier-card projet-card">
-                        <h4 class="atelier-title">Application de Gestion (Stage)</h4>
-                        <p class="atelier-description">
-                            Conception et déploiement d’une application web pour la gestion des étudiants (présences, rendez-vous) avec stack <strong>LAMP/LEMP</strong> sur <strong>Ubuntu Server</strong>.
-                        </p>
-                        <a href="projets/stageApp.html" target="_blank" class="project-button">Détails du projet</a>
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card glass h-100 d-flex flex-column">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title h6 mb-3 text-white">Projet Netcar</h4>
+                                <p class="card-text flex-grow-1 small">
+                                    Développement d'une solution applicative en utilisant l'architecture
+                                    <strong>MVC</strong>, la gestion de versions (<strong>Git</strong>) et
+                                    <strong>SQL</strong>.
+                                </p>
+                                <a href="projets/netCar.html" target="_blank"
+                                    class="btn btn-outline-light btn-sm mt-3 stretched-link">Détails du projet</a>
+                            </div>
+                        </div>
                     </div>
-                    
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card glass h-100 d-flex flex-column">
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title h6 mb-3 text-white">Application de Gestion</h4>
+                                <p class="card-text flex-grow-1 small">
+                                    Conception d’une app web pour la gestion des étudiants avec stack
+                                    <strong>LAMP/LEMP</strong> sur <strong>Ubuntu Server</strong>.
+                                </p>
+                                <a href="projets/stageApp.html" target="_blank"
+                                    class="btn btn-outline-light btn-sm mt-3 stretched-link">Détails du projet</a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            
         </div>
 
     </div>
