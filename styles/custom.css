@@ -266,3 +266,32 @@ footer a:hover {
 .form-floating label {
     color: var(--text-muted);
 }
+
+/* Carousel Control Customization (White Border) */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Fond semi-transparent */
+    border: 2px solid white;
+    /* Bordure blanche demandée */
+    border-radius: 50%;
+    /* Cercle */
+    width: 3.5rem;
+    height: 3.5rem;
+    background-size: 50%;
+    /* Réduit l'icône de flèche à l'intérieur */
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+/* Fix for dark mode if icons appear black */
+[data-bs-theme="dark"] .carousel-control-prev-icon,
+[data-bs-theme="dark"] .carousel-control-next-icon {
+    filter: invert(1) grayscale(100);
+}
