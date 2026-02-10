@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage Ermes Solutions - Léo Vieux</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../styles/custom.css">
+    <!-- Highlight.js for code blocks -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+    <style>
+        .placeholder-img {
+            background-color: #2c3035;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            border: 2px dashed #495057;
+            border-radius: 8px;
+            min-height: 250px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .placeholder-img:hover {
+            border-color: #0d6efd;
+            background-color: #343a40;
+        }
+
+        .placeholder-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <span class="text-primary">&lt;</span>Léo<span class="text-white">Vieux</span><span
+                    class="text-primary">/&gt;</span>
+            </a>
+            <a href="../index.html" class="btn btn-outline-light rounded-pill btn-sm">
+                ← Retour au Portfolio
+            </a>
+        </div>
+    </nav>
+
+    <!-- 1. EN-TÊTE & CONTEXTE -->
+    <section class="section pt-5 pb-0 min-vh-50 d-flex align-items-center">
+        <div class="container mt-5 pt-5">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <span class="badge bg-secondary bg-opacity-10 text-secondary mb-3 px-3 py-2 rounded-pill">Janvier
+                        2026 - Février 2026</span>
+                    <h1 class="display-4 fw-bold mb-4">Stage Ermes Solutions</h1>
+                    <h2 class="h5 text-primary mb-3">Développeur Fullstack & DevOps</h2>
+                    <p class="text-white-50 mb-4">La Technopole</p>
+
+                    <p class="lead text-muted mb-4">
+                        Développement complet de <strong>"Meditypno"</strong>, une infrastructure VOD (Video On Demand)
+                        autonome.<br>
+                        Création d'une plateforme de streaming sécurisée type Netflix, de l'architecture serveur jusqu'à
+                        l'interface utilisateur et l'administration.
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+                        <span class="badge border border-secondary text-secondary bg-transparent">Node.js</span>
+                        <span class="badge border border-secondary text-secondary bg-transparent">Vue.js 3</span>
+                        <span class="badge border border-secondary text-secondary bg-transparent">Docker</span>
+                        <span class="badge border border-secondary text-secondary bg-transparent">FFmpeg</span>
+                        <span class="badge border border-secondary text-secondary bg-transparent">Stripe</span>
+                        <span class="badge border border-secondary text-secondary bg-transparent">DevOps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section py-5">
+        <div class="container">
+
+            <!-- 1. CONTEXTE -->
+            <div class="row mb-5 align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="rounded-3 overflow-hidden shadow-lg border border-secondary border-opacity-25">
+                        <img src="../assets/img/stages/stage2/ermes-solutions-presentation.webp"
+                            alt="Locaux Ermes Solutions" class="img-fluid w-100 object-fit-cover"
+                            style="min-height: 300px;">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="h3 text-white mb-3">1. Contexte de l'Entreprise</h2>
+
+                    <p class="text-muted">
+                        Basée à la <strong>Technopole Hélioparc à Pau</strong>, l'entreprise <strong>Ermes
+                            Solutions</strong> avait des besoins informatiques spécifiques pour développer son activité.
+                    </p>
+                    <p class="text-muted">
+                        L'objectif principal était de concevoir <strong>"Meditypno"</strong>, une plateforme VOD
+                        complète permettant d'héberger, de sécuriser et de monétiser des contenus vidéos. Ce projet
+                        visait à offrir une solution autonome pour la diffusion de formations et de médias payants, avec
+                        une gestion simplifiée des abonnements et contenus.
+                    </p>
+                </div>
+            </div>
+            <!-- 2. ARCHITECTURE TECHNIQUE -->
+            <div class="row mb-5 align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <h2 class="h3 text-white mb-3">2. Architecture Technique</h2>
+                    <p class="text-muted">
+                        Conception d'un pipeline d'encodage vidéo automatisé et conteneurisation complète.
+                        L'objectif était de créer un système "Zéro Clic" : dès qu'une vidéo est déposée, elle est
+                        détectée, encodée et mise en ligne automatiquement.
+                    </p>
+                    <div class="card glass p-3 border-0 mt-3">
+                        <h6 class="text-primary">Flux de Données :</h6>
+                        <ul class="mb-0 small text-white-50">
+                            <li>📂 <strong>Ingestion :</strong> Surveillance de dossier via <em>Chokidar</em>.</li>
+                            <li>⚙️ <strong>Traitement :</strong> Transcodage HLS adaptatif via <em>FFmpeg</em>
+                                (Node.js).</li>
+                            <li>🐳 <strong>Infrastructure :</strong> Orchestration Docker (Front, Back, DB, Caddy).</li>
+                            <li>🔒 <strong>Sécurité :</strong> Reverse Proxy Caddy avec SSL Automatique.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="placeholder-img overflow-hidden"
+                        data-content="Schéma Architecture Technique (Flux de données)">
+                        <!-- [PLACEHOLDER IMAGE 1] -->
+                        <img src="../assets/img/stages/stage2/Shema.png" alt="Schéma Architecture">
+                    </div>
+                    <p class="text-center text-muted small mt-2">Architecture globale du pipeline VOD et de la stack
+                        Docker.</p>
+                </div>
+            </div>
+
+            <!-- 3. INTERFACE PUBLIQUE (VITRINE) -->
+            <div class="row mb-5">
+                <div class="col-12 mb-4">
+                    <h2 class="h3 text-white mb-3">3. Interface Publique (Vitrine)</h2>
+                    <p class="text-muted">
+                        Développement d'une Landing Page immersive en Vue.js pour présenter le produit.
+                        Le design reprend les codes des plateformes de streaming (Style Netflix/Zen) avec une mise en
+                        page aérée et visuelle.
+                    </p>
+                </div>
+
+                <div class="col-12 mb-4">
+                    <div class="placeholder-img overflow-hidden" style="min-height: 400px;"
+                        data-content="Haut de la page d'accueil (Hero Section)">
+                        <!-- [PLACEHOLDER IMAGE 2] -->
+                        <img src="../assets/img/stages/stage2/LandingPageBase.png" alt="Hero Section">
+                    </div>
+                    <p class="text-center text-muted small mt-2">Landing Page : Hero Section immersive.</p>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card glass h-100 border-0">
+                        <div class="placeholder-img overflow-hidden" style="min-height: 300px;"
+                            data-content="Section des tarifs (Stripe)">
+                            <!-- [PLACEHOLDER IMAGE 3] -->
+                            <img src="../assets/img/stages/stage2/LandingPageDifferentesOffres.png"
+                                alt="Section Tarifs">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="h6 text-white text-center mt-2">Offres & Tarifs</h5>
+                            <p class="small text-muted text-center mb-0">Les tarifs sont récupérés dynamiquement via
+                                Stripe.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card glass h-100 border-0">
+                        <div class="placeholder-img overflow-hidden" style="min-height: 300px;"
+                            data-content="Page de maintenance">
+                            <!-- [PLACEHOLDER IMAGE 4] -->
+                            <img src="../assets/img/stages/stage2/LandingPageMaintenance.png" alt="Page Maintenance">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="h6 text-white text-center mt-2">Gestion d'Incident</h5>
+                            <p class="small text-muted text-center mb-0">Mode maintenance activable à chaud par
+                                l'administrateur.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. AUTHENTIFICATION -->
+            <div class="row mb-5 align-items-center">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="h3 text-white mb-3">4. Authentification Sécurisée</h2>
+                    <p class="text-muted">
+                        Mise en place d'un système robuste basé sur <strong>JWT</strong> (JSON Web Tokens).
+                        L'accès au contenu est strictement protégé : middleware de vérification sur le backend et
+                        Navigation Guards sur le frontend (Vue Router).
+                    </p>
+                    <ul class="list-unstyled text-white-50 small mt-3">
+                        <li class="mb-2">🔐 Tokens session longue (30 jours)</li>
+                        <li class="mb-2">🚫 Protection Brute-Force (Rate Limiting)</li>
+                        <li class="mb-2">👁️ Toggle visibilité mot de passe</li>
+                    </ul>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="placeholder-img overflow-hidden" data-content="Page Se Connecter">
+                                <!-- [PLACEHOLDER IMAGE 5] -->
+                                <img src="../assets/img/stages/stage2/PageConnexion.png" alt="Page Login">
+                            </div>
+                            <p class="text-center text-muted small mt-2">Interface de Connexion.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="placeholder-img overflow-hidden" data-content="Page S'inscrire">
+                                <!-- [PLACEHOLDER IMAGE 6] -->
+                                <img src="../assets/img/stages/stage2/PageInscription.png" alt="Page Register">
+                            </div>
+                            <p class="text-center text-muted small mt-2">Interface d'Inscription.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. PAIEMENT & ABONNEMENTS -->
+            <div class="row mb-5 flex-row-reverse align-items-center">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="h3 text-white mb-3">5. Paiement & Abonnements</h2>
+                    <p class="text-muted">
+                        Intégration complète de l'API <strong>Stripe</strong> pour la gestion des abonnements
+                        récurrents.
+                        Le système gère automatiquement les droits d'accès (Segmentation : Meditypno, Hypnolangue, Kids)
+                        via Webhooks.
+                    </p>
+                    <p class="text-muted small">
+                        Un système de "Codes d'activation" a également été développé pour permettre la vente physique
+                        d'abonnements sans CB.
+                    </p>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="placeholder-img overflow-hidden" data-content="Page Choix Abonnements">
+                                <!-- [PLACEHOLDER IMAGE 7] -->
+                                <img src="../assets/img/stages/stage2/ChoixTroisPaiementApresInscription.png"
+                                    alt="Choix Abonnements">
+                            </div>
+                            <p class="text-center text-muted small mt-2">Tunnel d'achat : Sélection de l'offre.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="placeholder-img overflow-hidden" data-content="Interface Paiement Stripe">
+                                <!-- [PLACEHOLDER IMAGE 8] -->
+                                <img src="../assets/img/stages/stage2/PagePaiementStripes.png" alt="Interface Stripe">
+                            </div>
+                            <p class="text-center text-muted small mt-2">Checkout sécurisé Stripe.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. L'APPLICATION (ESPACE MEMBRE) -->
+            <div class="row mb-5">
+                <div class="col-12 mb-4">
+                    <h2 class="h3 text-white mb-3">6. L'Application (Espace Membre)</h2>
+                    <p class="text-muted">
+                        Une fois connecté, l'utilisateur accède à "Meditypno", l'interface de streaming.
+                        Développement d'un lecteur vidéo HLS sur mesure (VideoPlayer.vue) et d'une navigation fluide.
+                    </p>
+                </div>
+
+                <div class="col-12 mb-4">
+                    <div class="placeholder-img overflow-hidden" style="min-height: 150px;"
+                        data-content="Haut de page /home (Navbar, Bienvenue)">
+                        <!-- [PLACEHOLDER IMAGE 9] -->
+                        <img src="../assets/img/stages/stage2/AcceuilPerso.png" alt="Haut Page Home">
+                    </div>
+                    <p class="text-center text-muted small mt-2">Espace Membre : Accueil personnalisé.</p>
+                </div>
+
+                <div class="col-12">
+                    <div class="placeholder-img overflow-hidden" style="min-height: 400px;"
+                        data-content="Catalogue : Grille Vidéos + Recherche Tags">
+                        <!-- [PLACEHOLDER IMAGE 10] -->
+                        <img src="../assets/img/stages/stage2/CatalogueVideo.png" alt="Catalogue Vidéos">
+                    </div>
+                    <p class="text-center text-muted small mt-2">Catalogue : Grille de contenu avec filtrage par tags.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 7. BACK-OFFICE ADMINISTRATEUR -->
+            <div class="row mb-5">
+                <div class="col-12 mb-4">
+                    <h2 class="h3 text-white mb-3 text-center">7. Back-Office Administrateur</h2>
+                    <p class="text-muted text-center w-75 mx-auto">
+                        Développement d'un Dashboard complet pour donner une autonomie totale à l'entreprise.
+                        L'administration permet de piloter le contenu, les utilisateurs et les ventes sans toucher au
+                        code.
+                    </p>
+                </div>
+
+                <!-- Ligne 1 : Pilotage & CRM -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card glass h-100 border-0">
+                        <div class="placeholder-img card-img-top overflow-hidden" style="height: 250px;"
+                            data-content="Haut Dashboard (Boutons maintenance, tarifs)">
+                            <!-- [PLACEHOLDER IMAGE 11] -->
+                            <img src="../assets/img/stages/stage2/AdminPageGlobale.png" alt="Dashboard Pilotage">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="h6 text-white">Pilotage Global</h5>
+                            <p class="small text-muted mb-0">Interrupteur de maintenance, Ajustement dynamique des prix
+                                Stripe.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4">
+                    <div class="card glass h-100 border-0">
+                        <div class="placeholder-img card-img-top overflow-hidden" style="height: 250px;"
+                            data-content="CRM Clients (Tableau + Export)">
+                            <!-- [PLACEHOLDER IMAGE 12] -->
+                            <img src="../assets/img/stages/stage2/AdminGestionAdministrateur.png" alt="CRM Clients">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="h6 text-white">CRM & Utilisateurs</h5>
+                            <p class="small text-muted mb-0">Gestion des abonnés, Export CSV, Assignation manuelle.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ligne 2 : Vidéo & Upload -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card glass h-100 border-0">
+                        <div class="placeholder-img card-img-top overflow-hidden" style="height: 250px;"
+                            data-content="Bibliothèque Vidéo">
+                            <!-- [PLACEHOLDER IMAGE 13] -->
+                            <img src="../assets/img/stages/stage2/AdminBiblioDeContenu.png" alt="Bibliothèque Vidéo">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="h6 text-white">Gestion de Contenu</h5>
+                            <p class="small text-muted mb-0">Édition des métadonnées, Tags, et Vues.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4">
+                    <div class="card glass h-100 border-0">
+                        <div class="placeholder-img card-img-top overflow-hidden" style="height: 250px;"
+                            data-content="Interface Upload Drag & Drop">
+                            <!-- [PLACEHOLDER IMAGE 14] -->
+                            <img src="../assets/img/stages/stage2/AdminPageDragAndDrop.png" alt="Upload Interface">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="h6 text-white">Ingestion Vidéo</h5>
+                            <p class="small text-muted mb-0">Upload Drag & Drop avec barre de progression temps réel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ligne 3 : Vente Physique -->
+                <div class="col-12 mt-2">
+                    <div class="card glass border-0">
+                        <div class="row g-0 align-items-center">
+                            <div class="col-md-4">
+                                <div class="placeholder-img overflow-hidden h-100"
+                                    style="min-height: 200px; border-radius: 8px 0 0 8px;"
+                                    data-content="Générateur Codes Activation">
+                                    <!-- [PLACEHOLDER IMAGE 15] -->
+                                    <img src="../assets/img/stages/stage2/GestionDesCodes.png" alt="Générateur Codes">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="h6 text-white">Vente Physique & Partenariats</h5>
+                                    <p class="text-muted small mb-3">
+                                        Interface dédiée à la génération massive de codes d'activation (pour cartes
+                                        cadeaux ou vente hors ligne).
+                                        Permet d'exporter des listes CSV de codes valides pour les 3 types
+                                        d'abonnements.
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <span
+                                            class="badge border border-secondary text-secondary bg-transparent">Génération
+                                            CSV</span>
+                                        <span
+                                            class="badge border border-secondary text-secondary bg-transparent">Gestion
+                                            Stocks</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 8. MONITORING & ANALYTICS -->
+            <div class="row mb-5">
+                <div class="col-12 mb-4">
+                    <h2 class="h3 text-white mb-3 text-center">8. Monitoring & Analytics</h2>
+                    <p class="text-muted text-center w-75 mx-auto">
+                        Intégration d'outils de suivi pour garantir la performance et comprendre l'usage de la
+                        plateforme.
+                        Utilisation de solutions respectueuses de la vie privée (Umami) et de métriques en temps réel.
+                    </p>
+                </div>
+
+                <div class="col-12">
+                    <div class="rounded-3 overflow-hidden shadow-lg border border-secondary border-opacity-25">
+                        <img src="../assets/img/stages/stage2/Umami.png" alt="Dashboard Umami Analytics"
+                            class="img-fluid w-100 object-fit-cover">
+                    </div>
+                    <p class="text-center text-muted small mt-2">Dashboard Umami : Suivi des visiteurs et des
+                        performances en temps réel.</p>
+                </div>
+            </div>
+
+            <!-- CTA - VOIR LE SITE -->
+            <div class="row mt-5 mb-5 text-center">
+                <div class="col-12">
+                    <h2 class="h4 text-white mb-4">Découvrir le projet en live</h2>
+                    <a href="https://meditypno.ermes-equilibre.com/" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg">
+                        Voir le site <i class="bi bi-box-arrow-up-right ms-2"></i>
+                    </a>
+                    <p class="text-muted small mt-3">(Le site est en production et accessible au public)</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 glass border-top border-secondary border-opacity-10">
+        <div class="container">
+            <p class="mb-0 text-muted small">&copy; 2026 Léo Vieux. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>
