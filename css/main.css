@@ -543,6 +543,66 @@ body {
     transform: translateY(-2px);
 }
 
+/* CV DOWNLOAD SECTION */
+.cv-download-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem 3rem;
+    margin: 0;
+}
+
+.btn-download-cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 2.5rem;
+    background: var(--gradient-primary);
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-glow);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-download-cv::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-download-cv:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.btn-download-cv:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.7);
+}
+
+.btn-download-cv i {
+    font-size: 1.3rem;
+    animation: bounce 2s infinite;
+}
+
+.btn-download-cv span {
+    position: relative;
+    z-index: 1;
+}
+
 /* PROJECTS SECTION */
 .projects-category {
     margin-bottom: 4rem;
