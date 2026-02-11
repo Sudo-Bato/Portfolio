@@ -1,92 +1,683 @@
 <!DOCTYPE html>
-<html lang="fr" data-bs-theme="dark">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Léo Vieux</title>
+    <meta name="description" content="Portfolio de Léo Vieux - Étudiant Développeur BTS SIO SLAM">
+    <meta name="author" content="Léo Vieux">
+    <title>Léo Vieux | Développeur</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles/custom.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Favicon (Optional) -->
-    <!-- <link rel="icon" type="image/png" href="assets/favicon.png"> -->
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
 
     <!-- Navigation -->
-    <header>
-        <nav class="navbar navbar-expand-lg fixed-top">
-            <div class="container">
-                <a class="navbar-brand text-gradient" href="#">Léo Vieux</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav nav-list">
-                        <li class="nav-item"><a href="#accueil" class="nav-link" data-page="accueil">Accueil</a></li>
-                        <li class="nav-item"><a href="#cv" class="nav-link" data-page="cv">CV</a></li>
-                        <li class="nav-item"><a href="#competences" class="nav-link" data-page="competences">Projets</a>
-                        </li>
-                        <li class="nav-item"><a href="#stage" class="nav-link" data-page="stage">Stage</a></li>
-                        <li class="nav-item"><a href="#veille" class="nav-link" data-page="veille">Veille</a></li>
-                        <li class="nav-item"><a href="#ateliers" class="nav-link" data-page="ateliers">Ateliers</a></li>
-                        <li class="nav-item"><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
-                    </ul>
-                </div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">LV</span>
             </div>
-        </nav>
-    </header>
 
-    <!-- test -->
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active" data-section="home">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="#cv" class="nav-link" data-section="cv">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>CV</span>
+                </a>
+                <a href="#projets" class="nav-link" data-section="projets">
+                    <i class="fas fa-code"></i>
+                    <span>Projets</span>
+                </a>
+                <a href="#stages" class="nav-link" data-section="stages">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Stages</span>
+                </a>
+                <a href="#veille" class="nav-link" data-section="veille">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Veille</span>
+                </a>
+                <a href="#contact" class="nav-link" data-section="contact">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
     <!-- Main Content -->
-    <main id="page-content">
-        <!-- Sections will be loaded here by JS -->
+    <main class="main-content">
+        <!-- HOME SECTION -->
+        <section id="home" class="section section-home">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="title-greeting">Bonjour, je suis</span>
+                            <span class="title-name typing-text">Léo Vieux</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            <span class="subtitle-text">Étudiant Développeur</span>
+                            <span class="subtitle-highlight">BTS SIO SLAM</span>
+                        </p>
+                        <div class="hero-description">
+                            <p>Passionné par le développement web et les technologies modernes, je crée des solutions
+                                innovantes et performantes.</p>
+                        </div>
+                        <div class="hero-buttons">
+                            <a href="#projets" class="btn btn-primary">
+                                <span>Voir mes projets</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="#contact" class="btn btn-secondary">
+                                <span>Me contacter</span>
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="hero-social">
+                            <a href="https://github.com/Sudo-Bato" target="_blank" class="social-link"
+                                aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/leo-vieux-a80233327/" target="_blank"
+                                class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV SECTION -->
+        <section id="cv" class="section section-cv">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Curriculum Vitæ</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="cv-grid">
+                    <!-- Formations -->
+                    <div class="cv-category">
+                        <h3 class="category-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            Formations
+                        </h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-date">2024 - 2026</span>
+                                    <h4>BTS Services Informatiques aux Organisations (SLAM)</h4>
+                                    <p>Lycée Saint-John Perse, Pau</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-date">2023 - 2024</span>
+                                    <h4>The Odin Project (Fondations Course)</h4>
+                                    <p>Formation en autodidacte (Distanciel)</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-date">2022 - 2024</span>
+                                    <h4>Bac Pro Technicien en Chaudronnerie Industrielle</h4>
+                                    <p>Lycée des métiers de l'habitat, Gelos – Admis au baccalauréat 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expérience Professionnelle -->
+                    <div class="cv-category">
+                        <h3 class="category-title">
+                            <i class="fas fa-briefcase"></i>
+                            Expérience Professionnelle
+                        </h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-date">2026</span>
+                                    <h4>Stage Développement Fullstack & DevOps</h4>
+                                    <p class="company">Entreprise : Ermes Solutions</p>
+                                    <p class="description">Conception et déploiement d'une plateforme de VOD complète
+                                        (Vue.js, Node.js) incluant streaming HLS, encodage automatisé (FFmpeg) et espace
+                                        d'administration sécurisé.</p>
+                                    <div class="tech-tags">
+                                        <span class="tag">Vue.js</span>
+                                        <span class="tag">Node.js</span>
+                                        <span class="tag">Docker</span>
+                                        <span class="tag">FFmpeg</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-date">2025</span>
+                                    <h4>Stage Développement d'application web</h4>
+                                    <p class="company">Entreprise : Campus Connecté Saint Gaudens</p>
+                                    <p class="description">Conception et déploiement d'une application web pour la
+                                        gestion d'étudiants : suivi des présences via QR codes, gestion des rendez-vous.
+                                    </p>
+                                    <div class="tech-tags">
+                                        <span class="tag">PHP</span>
+                                        <span class="tag">MySQL</span>
+                                        <span class="tag">Linux</span>
+                                        <span class="tag">Nginx</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-date">2022 - 2024</span>
+                                    <h4>Dessin assisté par ordinateur</h4>
+                                    <p class="company">Stages en chaudronnerie</p>
+                                    <p class="description">Fabrication de pièces de métal sur mesure en utilisant des
+                                        outils de DAO/CAO.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJETS SECTION -->
+        <section id="projets" class="section section-projets">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Mes Projets</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <!-- Projets Personnels -->
+                <div class="projects-category">
+                    <h3 class="category-subtitle">
+                        <i class="fas fa-rocket"></i>
+                        Projets Personnels
+                    </h3>
+                    <div class="projects-grid">
+                        <a href="projets/timetracker.html"
+                            style="text-decoration: none; color: inherit; display: block;">
+                            <div class="project-card">
+                                <div class="project-badge new-badge">Nouveau</div>
+                                <div class="project-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h4 class="project-title">TimeTracker Desktop App</h4>
+                                <p class="project-description">Application de bureau "Offline" avec Electron, React et
+                                    TypeScript. Gestion du temps, statistiques et support multiplateforme (Mac/Win).</p>
+                                <div class="project-tech">
+                                    <span class="tag">Electron</span>
+                                    <span class="tag">React</span>
+                                    <span class="tag">TypeScript</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="projets/homelab.html" style="text-decoration: none; color: inherit; display: block;">
+                            <div class="project-card">
+                                <div class="project-icon">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <h4 class="project-title">Infrastructure HomeLab</h4>
+                                <p class="project-description">Conception et déploiement d'un serveur personnel sous
+                                    Ubuntu
+                                    Server et Docker. Sécurité Zero Trust et WAF pour auto-héberger des services
+                                    critiques.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tag">Docker</span>
+                                    <span class="tag">Ubuntu</span>
+                                    <span class="tag">Security</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="projets/spaceshooter.html"
+                            style="text-decoration: none; color: inherit; display: block;">
+                            <div class="project-card">
+                                <div class="project-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <h4 class="project-title">Jeu 2D Space Shooter</h4>
+                                <p class="project-description">Création d'un jeu de tir spatial 2D en Python avec
+                                    Pygame-ce
+                                    pour la gestion des événements, collisions et rendu graphique.</p>
+                                <div class="project-tech">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">Pygame</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="projets/minecraft.html" style="text-decoration: none; color: inherit; display: block;">
+                            <div class="project-card">
+                                <div class="project-icon">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h4 class="project-title">Serveur Minecraft et DNS</h4>
+                                <p class="project-description">Installation et configuration d'un Serveur Minecraft avec
+                                    port forwarding et association d'un nom de domaine DNS.</p>
+                                <div class="project-tech">
+                                    <span class="tag">Networking</span>
+                                    <span class="tag">DNS</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projets de Cours -->
+                <div class="projects-category">
+                    <h3 class="category-subtitle">
+                        <i class="fas fa-school"></i>
+                        Projets de Cours & Stages (BTS SIO SLAM)
+                    </h3>
+                    <div class="projects-grid">
+                        <a href="stage/stage-ermes.html" style="text-decoration: none; color: inherit; display: block;">
+                            <div class="project-card">
+                                <div class="project-badge new-badge">Nouveau</div>
+                                <div class="project-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <h4 class="project-title">MeditYpno VOD (Stage)</h4>
+                                <p class="project-description">Développement d'un Netflix-like : Streaming HLS, API
+                                    Node.js/FFmpeg, Frontend Vue.js, Auth RBAC et déploiement Docker sur VPS OVH.</p>
+                                <div class="project-tech">
+                                    <span class="tag">Vue.js</span>
+                                    <span class="tag">Node.js</span>
+                                    <span class="tag">Docker</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="stage/stage-campus-connecte.html"
+                            style="text-decoration: none; color: inherit; display: block;">
+                            <div class="project-card">
+                                <div class="project-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h4 class="project-title">MP3000 & MTPP (Stage)</h4>
+                                <p class="project-description">Développement d'applications web et infrastructure
+                                    serveur
+                                    Ubuntu/Docker pour la Mairie de Saint-Gaudens.</p>
+                                <div class="project-tech">
+                                    <span class="tag">PHP</span>
+                                    <span class="tag">Docker</span>
+                                    <span class="tag">Ubuntu</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="project-card">
+                            <div class="project-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h4 class="project-title">Projet Locaboard</h4>
+                            <p class="project-description">Construction d'un site dynamique avec HTML, CSS, PHP et
+                                JavaScript. Valorisation de l'image de l'organisation.</p>
+                            <div class="project-tech">
+                                <span class="tag">HTML/CSS</span>
+                                <span class="tag">PHP</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <h4 class="project-title">Site Boutique Pic du Midi</h4>
+                            <p class="project-description">Création d'une boutique en ligne avec CMS WordPress. Gestion
+                                de la charte graphique et des sauvegardes.</p>
+                            <div class="project-tech">
+                                <span class="tag">WordPress</span>
+                                <span class="tag">WooCommerce</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-icon">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <h4 class="project-title">Projet Netcar</h4>
+                            <p class="project-description">Développement d'une solution applicative en utilisant
+                                l'architecture MVC, la gestion de versions (Git) et SQL.</p>
+                            <div class="project-tech">
+                                <span class="tag">MVC</span>
+                                <span class="tag">Git</span>
+                                <span class="tag">SQL</span>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h4 class="project-title">Application de Gestion</h4>
+                            <p class="project-description">Conception d'une app web pour la gestion des étudiants avec
+                                stack LAMP/LEMP sur Ubuntu Server.</p>
+                            <div class="project-tech">
+                                <span class="tag">LAMP</span>
+                                <span class="tag">Ubuntu</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STAGES SECTION -->
+        <section id="stages" class="section section-stages">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Stages</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="stages-container">
+                    <!-- Stage Ermes Solutions -->
+                    <a href="stage/stage-ermes.html" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="stage-card">
+                            <div class="stage-header">
+                                <div class="stage-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="stage-info">
+                                    <h3 class="stage-company">Ermes Solutions</h3>
+                                    <span class="stage-date">
+                                        <i class="fas fa-calendar"></i>
+                                        Janvier 2026 - Février 2026
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="stage-content">
+                                <p class="stage-intro">Développement d'une plateforme de VOD personnalisée
+                                    (Netflix-like) et
+                                    modernisation de l'infrastructure web de l'entreprise.</p>
+                                <p class="stage-description">J'ai conçu et déployé une architecture complète de
+                                    streaming
+                                    vidéo sécurisée. Le projet incluait le développement d'une API Node.js pilotant
+                                    FFmpeg
+                                    pour l'encodage automatique (HLS), un frontend réactif en Vue.js, et une
+                                    sécurisation
+                                    avancée (RBAC, JWT). J'ai également géré la mise en production sur VPS OVH avec
+                                    Docker
+                                    et l'automatisation des certificats SSL.</p>
+                                <div class="stage-tech">
+                                    <h4>Technologies utilisées</h4>
+                                    <div class="tech-grid">
+                                        <span class="tech-badge">
+                                            <i class="fab fa-vuejs"></i>
+                                            Vue.js 3
+                                        </span>
+                                        <span class="tech-badge">
+                                            <i class="fab fa-node-js"></i>
+                                            Node.js / Express
+                                        </span>
+                                        <span class="tech-badge">
+                                            <i class="fab fa-docker"></i>
+                                            Docker
+                                        </span>
+                                        <span class="tech-badge">
+                                            <i class="fas fa-film"></i>
+                                            FFmpeg
+                                        </span>
+                                        <span class="tech-badge">
+                                            <i class="fab fa-linux"></i>
+                                            Linux / VPS OVH
+                                        </span>
+                                        <span class="tech-badge">
+                                            <i class="fas fa-database"></i>
+                                            MySQL
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Stage Campus Connecté -->
+                    <a href="stage/stage-campus-connecte.html"
+                        style="text-decoration: none; color: inherit; display: block;">
+                        <div class="stage-card">
+                            <div class="stage-header">
+                                <div class="stage-icon">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <div class="stage-info">
+                                    <h3 class="stage-company">Campus Connecté – Mairie de Saint-Gaudens</h3>
+                                    <span class="stage-date">
+                                        <i class="fas fa-calendar"></i>
+                                        Mai 2025 - Juin 2025
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="stage-content">
+                                <p class="stage-intro">Participation au développement de deux applications web : Marcel
+                                    Présence 3000 (gestion de la présence) et Massin Tout Petit Plus (gestion des
+                                    événements).</p>
+                                <p class="stage-description">Mise en place d'un serveur Ubuntu avec Nginx, PHP et
+                                    MariaDB,
+                                    intégration de GitLab, conception de maquettes, développement de fonctionnalités
+                                    (sessions sécurisées, génération de QR codes, gestion des absences, emploi du temps,
+                                    événements) et rédaction de documentation technique.</p>
+                                <div class="stage-tech">
+                                    <h4>Technologies utilisées</h4>
+                                    <div class="tech-grid">
+                                        <span class="tech-badge">
+                                            <i class="fab fa-php"></i>
+                                            PHP 8
+                                        </span>
+                                        <span class="tech-badge">
+                                            <i class="fas fa-database"></i>
+                                            MySQL / MariaDB
+                                        </span>
+                                        <span class="tech-badge">
+                                            <i class="fab fa-html5"></i>
+                                            HTML / CSS
+                                        </span>
+                                        <span class="tech-badge">
+                                            <i class="fab fa-js"></i>
+                                            JavaScript
+                                        </span>
+                                        <span class="tech-badge">
+                                            <i class="fab fa-git-alt"></i>
+                                            Git / GitLab
+                                        </span>
+                                        <span class="tech-badge">
+                                            <i class="fab fa-linux"></i>
+                                            Linux (Ubuntu Server)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- VEILLE SECTION -->
+        <section id="veille" class="section section-veille">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Veille Technologique</h2>
+                    <div class="title-underline"></div>
+                    <p class="section-subtitle">Moteurs de Jeux : Performance & Physique</p>
+                </div>
+
+                <div class="veille-timeline">
+                    <div class="veille-item">
+                        <div class="veille-date">Octobre 2024</div>
+                        <div class="veille-content">
+                            <div class="veille-icon">
+                                <i class="fas fa-unity"></i>
+                            </div>
+                            <h4 class="veille-title">Unity 6.0 LTS : Multithreading et ECS</h4>
+                            <p class="veille-description">La version LTS de Unity 6 stabilise et optimise l'ECS, offrant
+                                des simulations physiques massives en parallèle. Impact : Réduction drastique des
+                                goulots d'étranglement CPU.</p>
+                        </div>
+                    </div>
+
+                    <div class="veille-item">
+                        <div class="veille-date">Octobre 2024</div>
+                        <div class="veille-content">
+                            <div class="veille-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <h4 class="veille-title">Chaos Physics (UE 5.5)</h4>
+                            <p class="veille-description">Amélioration des outils de Fracture Editor. Meilleur contrôle
+                                sur la pré-cassure des maillages et meilleure stabilité pour les scènes de destruction
+                                complexes.</p>
+                        </div>
+                    </div>
+
+                    <div class="veille-item">
+                        <div class="veille-date">Décembre 2024</div>
+                        <div class="veille-content">
+                            <div class="veille-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h4 class="veille-title">DLSS 4.0 (Nvidia)</h4>
+                            <p class="veille-description">Nouveaux SDKs pour réduire les artefacts de mouvement et
+                                améliorer la qualité d'image en mode "Performance". Intégration plus invisible et
+                                fiable.</p>
+                        </div>
+                    </div>
+
+                    <div class="veille-item">
+                        <div class="veille-date">Mars 2025</div>
+                        <div class="veille-content">
+                            <div class="veille-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4 class="veille-title">Multi Frame Generation</h4>
+                            <p class="veille-description">Les moteurs intègrent des outils natifs pour simplifier le
+                                Multi Frame Generation basé sur l'IA. Bond de performance GPU sans effort de
+                                développement majeur.</p>
+                        </div>
+                    </div>
+
+                    <div class="veille-item">
+                        <div class="veille-date">Septembre 2025</div>
+                        <div class="veille-content">
+                            <div class="veille-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h4 class="veille-title">Godot 4.5 : Physique 2D/3D</h4>
+                            <p class="veille-description">Correction des gigueurs (jitter) et fusion des ensembles de
+                                tuiles. Jeux plus stables, collisions plus précises et débogage facilité.</p>
+                        </div>
+                    </div>
+
+                    <div class="veille-item">
+                        <div class="veille-date">Automne 2025</div>
+                        <div class="veille-content">
+                            <div class="veille-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4 class="veille-title">Procedural Damage</h4>
+                            <p class="veille-description">Tendance (ex: Wreckfest 2) à utiliser les dégâts procéduraux
+                                pour réduire la dépendance aux modèles pré-calculés et créer des déformations uniques.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section section-contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Contact</h2>
+                    <div class="title-underline"></div>
+                    <p class="section-subtitle">Restons en contact ! 📧</p>
+                </div>
+
+                <div class="contact-content">
+                    <p class="contact-intro">Je suis toujours ouvert à discuter de nouveaux projets, d'opportunités de
+                        collaboration ou d'échanger sur le développement web.</p>
+
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>E-mail</h4>
+                                <a href="mailto:leovieux.pro@gmail.com">leovieux.pro@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-social">
+                        <a href="https://github.com/votre-github" target="_blank" class="social-btn">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/leo-vieux-a8023332" target="_blank" class="social-btn">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer text-center">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-md-start mb-3 mb-md-0">
-                    <p class="mb-0">&copy; 2026 Léo Vieux. Tous droits réservés.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="https://github.com/Sudo-Bato" target="_blank"
-                        class="social-link btn btn-outline-light btn-sm rounded-circle p-2 lh-1" aria-label="Github">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-github" viewBox="0 0 16 16">
-                            <path
-                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/leo-vieux-a80233327/" target="_blank"
-                        class="social-link btn btn-outline-light btn-sm rounded-circle p-2 lh-1 ms-2"
-                        aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-linkedin" viewBox="0 0 16 16">
-                            <path
-                                d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Léo Vieux. Tous droits réservés.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <!-- Main JS -->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
 </body>
 
 </html>

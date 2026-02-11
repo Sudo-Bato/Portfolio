@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serveur Minecraft - Léo Vieux</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <style>
+        /* Page-specific styles */
+        .detail-page {
+            background: var(--bg-dark);
+            min-height: 100vh;
+        }
+
+        .detail-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 18, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+        }
+
+        .detail-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .detail-logo .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-normal);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            transform: translateX(-3px);
+        }
+
+        .detail-content {
+            margin-top: 80px;
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+
+        .detail-header {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .detail-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .detail-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-intro {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .detail-section {
+            max-width: 1200px;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .section-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-row.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .section-row.reverse>*:first-child {
+            order: 2;
+        }
+
+        .section-row.reverse>*:last-child {
+            order: 1;
+        }
+
+        .section-text h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .section-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .section-text ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 1rem 0;
+        }
+
+        .section-text li {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .section-text li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary-light);
+            font-weight: bold;
+        }
+
+        .detail-image {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .detail-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1.5rem;
+        }
+
+        .info-card h6 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-card li {
+            color: var(--text-secondary);
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .info-card li::before {
+            content: "✅";
+            margin-right: 0.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: var(--text-secondary);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            color: var(--primary-light);
+        }
+
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .spec-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spec-card h4 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .spec-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .detail-title {
+                font-size: 2.5rem;
+            }
+
+            .section-row,
+            .section-row.reverse {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-row.reverse>*:first-child,
+            .section-row.reverse>*:last-child {
+                order: 0;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-specs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="detail-page">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navbar -->
+    <nav class="detail-navbar">
+        <div class="detail-nav-container">
+            <a href="../index.html" class="detail-logo">
+                <span class="gradient-text">LV</span>
+            </a>
+            <a href="../index.html#projets" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Retour au Portfolio</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="detail-content">
+
+        <!-- Header Section -->
+        <section class="detail-header">
+            <span class="detail-badge">Premier Pas - Autodidacte</span>
+            <h1 class="detail-title">Serveur Minecraft</h1>
+            <h2 class="detail-subtitle">& Gestion Réseau</h2>
+            <p class="detail-intro">
+                Mes débuts dans l'administration système : transformation d'un PC de bureau d'occasion en serveur de jeu
+                performant sous Linux.
+            </p>
+            <div class="tech-tags" style="justify-content: center; margin-top: 2rem;">
+                <span class="tag">Linux (CLI)</span>
+                <span class="tag">Java</span>
+                <span class="tag">Réseau / DNS</span>
+                <span class="tag">Hardware</span>
+            </div>
+        </section>
+
+        <!-- Image Gallery Section -->
+        <section class="detail-section">
+            <div class="section-row">
+                <div class="detail-image">
+                    <img src="../assets/img/projects/mc_server/minecraft-server.png" alt="Serveur Minecraft en jeu">
+                    <p class="image-caption">Serveur Multijoueur Actif</p>
+                </div>
+                <div class="detail-image">
+                    <img src="../assets/img/projects/mc_server/commandPrompt.png" alt="Terminal de commande">
+                    <p class="image-caption">Gestion via Terminal SSH</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contexte Section -->
+        <section class="detail-section">
+            <div class="info-card" style="max-width: 800px; margin: 0 auto;">
+                <h6>📋 Contexte</h6>
+                <p style="margin: 0;">Projet personnel avant BTS SIO.</p>
+            </div>
+        </section>
+
+        <!-- 1. La Genèse du Projet -->
+        <section class="detail-section">
+            <div class="section-text" style="max-width: 900px; margin: 0 auto;">
+                <h2>1. La Genèse du Projet</h2>
+                <p>
+                    Avant même de commencer mon BTS SIO, je voulais comprendre comment fonctionnait un serveur "pour de
+                    vrai". J'ai acheté un vieil ordinateur de bureau professionnel (<strong>Dell Optiplex</strong>) pour
+                    <strong>100€</strong> sur le marché de l'occasion avec un objectif simple : le transformer en
+                    serveur de jeu capable d'accueillir mes amis.
+                </p>
+                <p>
+                    C'était mon premier vrai contact avec l'administration système. Plutôt que de simplement faire
+                    tourner un serveur sur Windows, j'ai voulu aller plus loin et découvrir Linux, comprendre le réseau,
+                    et mettre les mains dans le cambouis.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. Immersion Linux & Command Line -->
+        <section class="detail-section">
+            <div class="section-row reverse">
+                <div class="section-text">
+                    <h2>2. Immersion Linux & Command Line</h2>
+                    <p>
+                        Plutôt que d'utiliser Windows, j'ai installé une distribution <strong>Linux</strong> pour
+                        optimiser les performances de cette machine modeste.
+                    </p>
+
+                    <h3>Apprentissage du Terminal</h3>
+                    <p>
+                        Toute la gestion du serveur se faisait sans interface graphique (<strong>Headless</strong>),
+                        uniquement via SSH et le terminal. C'était un vrai défi au début, mais ça m'a forcé à apprendre
+                        les commandes essentielles rapidement.
+                    </p>
+
+                    <h3>Scripts & Optimisation</h3>
+                    <p>
+                        Création de scripts de démarrage (<code>start.sh</code>) avec allocation de RAM optimisée pour
+                        Java (Xmx/Xms flags). J'ai dû comprendre comment Java gère la mémoire pour éviter les lags et
+                        les crashes.
+                    </p>
+                </div>
+                <div>
+                    <div class="code-block" style="margin-top: 0;">
+                        <pre><code>#!/bin/bash
+# Script de démarrage optimisé
+java -Xmx2G -Xms2G \
+  -jar paper.jar \
+  --nogui</code></pre>
+                    </div>
+                    <div class="info-card">
+                        <h6>💡 Compétences acquises</h6>
+                        <ul>
+                            <li>Navigation terminal Linux</li>
+                            <li>Gestion des processus</li>
+                            <li>Optimisation Java/JVM</li>
+                            <li>Scripts Bash</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Paper-MC : Performance Optimization -->
+        <section class="detail-section">
+            <div class="section-row">
+                <div class="detail-image"
+                    style="display: flex; align-items: center; justify-content: center; background: var(--bg-card); padding: 2rem;">
+                    <img src="../assets/img/projects/mc_server/paper-mc-logo.svg" alt="Paper-MC Logo"
+                        style="max-width: 80%; height: auto;">
+                </div>
+                <div class="section-text">
+                    <h2>3. Paper-MC : Optimisation des Performances</h2>
+                    <p>
+                        Pour que le serveur tourne de manière fluide sur ce hardware modeste, j'ai utilisé
+                        <strong>Paper-MC</strong>, une version optimisée du serveur Minecraft vanilla.
+                    </p>
+                    <p>
+                        Paper-MC offre des performances nettement supérieures grâce à :
+                    </p>
+                    <ul>
+                        <li>Optimisations du moteur de jeu</li>
+                        <li>Meilleure gestion de la mémoire</li>
+                        <li>Réduction de lag causé par les redstone/entités</li>
+                        <li>Compatibilité avec les plugins Bukkit/Spigot</li>
+                    </ul>
+                    <p>
+                        C'était un choix technique crucial qui a permis d'avoir un serveur stable et réactif, même avec
+                        plusieurs joueurs connectés simultanément.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Défis Réseaux & DNS -->
+        <section class="detail-section">
+            <div class="section-text" style="max-width: 900px; margin: 0 auto;">
+                <h2>4. Défis Réseaux & DNS</h2>
+                <p>
+                    Pour rendre le serveur accessible depuis l'extérieur, j'ai dû plonger dans la configuration réseau
+                    de ma box internet. C'était probablement la partie la plus technique et la plus formatrice du
+                    projet.
+                </p>
+
+                <div class="tech-specs">
+                    <div class="spec-card">
+                        <h4>🔌 Port Forwarding (NAT)</h4>
+                        <p>
+                            Configuration de la règle NAT pour rediriger le trafic du <strong>port 25565</strong>
+                            (TCP/UDP) vers l'IP statique locale de mon serveur Dell.
+                        </p>
+                        <p style="margin-top: 1rem;">
+                            J'ai dû comprendre comment fonctionnait le NAT (Network Address Translation), configurer une
+                            IP locale statique pour éviter que l'adresse ne change, et créer les règles de redirection
+                            dans l'interface de ma box.
+                        </p>
+                    </div>
+
+                    <div class="spec-card">
+                        <h4>🌐 Gestion DNS</h4>
+                        <p>
+                            Pour ne pas avoir à donner mon IP publique (qui changeait), j'ai configuré un nom de domaine
+                            dynamique (<strong>DDNS</strong>) pour avoir une adresse de connexion propre de type
+                            <code>play.monserveur.fr</code>.
+                        </p>
+                        <p style="margin-top: 1rem;">
+                            Cela permettait à mes amis de se connecter avec un nom facile à retenir, et le DDNS se
+                            chargeait de mettre à jour automatiquement l'IP en cas de changement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fiche Technique -->
+        <section class="detail-section">
+            <h2
+                style="text-align: center; margin-bottom: 3rem; font-family: var(--font-heading); font-size: 2rem; color: var(--text-primary);">
+                📋 Fiche Technique
+            </h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Matériel</h3>
+                    <p><strong>Dell Optiplex</strong><br>(Occasion 100€)</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Compétences</h3>
+                    <p>• Installation Linux<br>• Configuration Réseau (NAT)<br>• Gestion DNS</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>Technologies</h3>
+                    <p>Linux • Paper-MC<br>SSH • Bash<br>DDNS</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Léo Vieux. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

@@ -1,120 +1,431 @@
 <!DOCTYPE html>
-<html lang="fr" data-bs-theme="dark">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stage Ermes Solutions - Léo Vieux</title>
 
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../styles/custom.css">
-    <!-- Highlight.js for code blocks -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
 
     <style>
-        .placeholder-img {
-            background-color: #2c3035;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6c757d;
-            border: 2px dashed #495057;
-            border-radius: 8px;
-            min-height: 250px;
+        /* Page-specific styles */
+        .detail-page {
+            background: var(--bg-dark);
+            min-height: 100vh;
+        }
+
+        .detail-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            position: relative;
+            z-index: 1000;
+            background: rgba(15, 18, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+        }
+
+        .detail-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .detail-logo .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-normal);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            transform: translateX(-3px);
+        }
+
+        .detail-content {
+            margin-top: 80px;
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+
+        .detail-header {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .detail-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .detail-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-location {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .detail-intro {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .detail-section {
+            max-width: 1200px;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .section-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-row.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .section-row.reverse>*:first-child {
+            order: 2;
+        }
+
+        .section-row.reverse>*:last-child {
+            order: 1;
+        }
+
+        .section-text h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .detail-image {
+            width: 100%;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
         }
 
-        .placeholder-img:hover {
-            border-color: #0d6efd;
-            background-color: #343a40;
+        .detail-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-glow);
         }
 
-        .placeholder-img img {
+        .detail-image img {
             width: 100%;
             height: auto;
             display: block;
         }
+
+        .image-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1.5rem;
+        }
+
+        .info-card h6 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-card li {
+            color: var(--text-secondary);
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .grid-single {
+            grid-template-columns: 1fr;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .admin-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .admin-card-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .admin-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .admin-card-body {
+            padding: 1.5rem;
+        }
+
+        .admin-card-body h5 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .admin-card-body p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .full-width-card {
+            grid-column: 1 / -1;
+        }
+
+        .horizontal-card {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+        }
+
+        .horizontal-card .admin-card-image {
+            height: 100%;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+            margin: var(--spacing-xl) 0;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 3rem;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-glow);
+            transition: all var(--transition-normal);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.8);
+        }
+
+        .cta-note {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .detail-title {
+                font-size: 2.5rem;
+            }
+
+            .section-row,
+            .section-row.reverse {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-row.reverse>*:first-child,
+            .section-row.reverse>*:last-child {
+                order: 0;
+            }
+
+            .image-grid,
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .horizontal-card {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
-<body>
+<body class="detail-page">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html">
-                <span class="text-primary">&lt;</span>Léo<span class="text-white">Vieux</span><span
-                    class="text-primary">/&gt;</span>
+    <nav class="detail-navbar">
+        <div class="detail-nav-container">
+            <a href="../index.html" class="detail-logo">
+                <span class="gradient-text">LV</span>
             </a>
-            <a href="../index.html" class="btn btn-outline-light rounded-pill btn-sm">
-                ← Retour au Portfolio
+            <a href="../index.html#stages" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Retour au Portfolio</span>
             </a>
         </div>
     </nav>
 
-    <!-- 1. EN-TÊTE & CONTEXTE -->
-    <section class="section pt-5 pb-0 min-vh-50 d-flex align-items-center">
-        <div class="container mt-5 pt-5">
-            <div class="row align-items-center">
-                <div class="col-lg-8 mx-auto text-center">
-                    <span class="badge bg-secondary bg-opacity-10 text-secondary mb-3 px-3 py-2 rounded-pill">Janvier
-                        2026 - Février 2026</span>
-                    <h1 class="display-4 fw-bold mb-4">Stage Ermes Solutions</h1>
-                    <h2 class="h5 text-primary mb-3">Développeur Fullstack & DevOps</h2>
-                    <p class="text-white-50 mb-4">La Technopole</p>
-
-                    <p class="lead text-muted mb-4">
-                        Développement complet de <strong>"Meditypno"</strong>, une infrastructure VOD (Video On Demand)
-                        autonome.<br>
-                        Création d'une plateforme de streaming sécurisée type Netflix, de l'architecture serveur jusqu'à
-                        l'interface utilisateur et l'administration.
-                    </p>
-                    <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
-                        <span class="badge border border-secondary text-secondary bg-transparent">Node.js</span>
-                        <span class="badge border border-secondary text-secondary bg-transparent">Vue.js 3</span>
-                        <span class="badge border border-secondary text-secondary bg-transparent">Docker</span>
-                        <span class="badge border border-secondary text-secondary bg-transparent">FFmpeg</span>
-                        <span class="badge border border-secondary text-secondary bg-transparent">Stripe</span>
-                        <span class="badge border border-secondary text-secondary bg-transparent">DevOps</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Main Content -->
-    <section class="section py-5">
-        <div class="container">
+    <main class="detail-content">
 
-            <!-- 1. CONTEXTE -->
-            <div class="row mb-5 align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="rounded-3 overflow-hidden shadow-lg border border-secondary border-opacity-25">
-                        <img src="../assets/img/stages/stage2/ermes-solutions-presentation.webp"
-                            alt="Locaux Ermes Solutions" class="img-fluid w-100 object-fit-cover"
-                            style="min-height: 300px;">
-                    </div>
+        <!-- Header Section -->
+        <section class="detail-header">
+            <span class="detail-badge">Janvier 2026 - Février 2026</span>
+            <h1 class="detail-title">Stage Ermes Solutions</h1>
+            <h2 class="detail-subtitle">Développeur Fullstack & DevOps</h2>
+            <p class="detail-location">La Technopole</p>
+            <p class="detail-intro">
+                Développement complet de <strong>"Meditypno"</strong>, une infrastructure VOD (Video On Demand)
+                autonome.<br>
+                Création d'une plateforme de streaming sécurisée type Netflix, de l'architecture serveur jusqu'à
+                l'interface utilisateur et l'administration.
+            </p>
+            <div class="tech-tags" style="justify-content: center; margin-top: 2rem;">
+                <span class="tag">Node.js</span>
+                <span class="tag">Vue.js 3</span>
+                <span class="tag">Docker</span>
+                <span class="tag">FFmpeg</span>
+                <span class="tag">Stripe</span>
+                <span class="tag">DevOps</span>
+            </div>
+        </section>
+
+        <!-- 1. CONTEXTE -->
+        <section class="detail-section">
+            <div class="section-row">
+                <div class="detail-image">
+                    <img src="../assets/img/stages/stage2/ermes-solutions-presentation.webp"
+                        alt="Locaux Ermes Solutions">
                 </div>
-                <div class="col-lg-6">
-                    <h2 class="h3 text-white mb-3">1. Contexte de l'Entreprise</h2>
-
-                    <p class="text-muted">
+                <div class="section-text">
+                    <h2>1. Contexte de l'Entreprise</h2>
+                    <p>
                         Basée à la <strong>Technopole Hélioparc à Pau</strong>, l'entreprise <strong>Ermes
                             Solutions</strong> avait des besoins informatiques spécifiques pour développer son activité.
                     </p>
-                    <p class="text-muted">
+                    <p>
                         L'objectif principal était de concevoir <strong>"Meditypno"</strong>, une plateforme VOD
                         complète permettant d'héberger, de sécuriser et de monétiser des contenus vidéos. Ce projet
                         visait à offrir une solution autonome pour la diffusion de formations et de médias payants, avec
@@ -122,18 +433,21 @@
                     </p>
                 </div>
             </div>
-            <!-- 2. ARCHITECTURE TECHNIQUE -->
-            <div class="row mb-5 align-items-center">
-                <div class="col-lg-5 mb-4 mb-lg-0">
-                    <h2 class="h3 text-white mb-3">2. Architecture Technique</h2>
-                    <p class="text-muted">
+        </section>
+
+        <!-- 2. ARCHITECTURE TECHNIQUE -->
+        <section class="detail-section">
+            <div class="section-row reverse">
+                <div class="section-text">
+                    <h2>2. Architecture Technique</h2>
+                    <p>
                         Conception d'un pipeline d'encodage vidéo automatisé et conteneurisation complète.
                         L'objectif était de créer un système "Zéro Clic" : dès qu'une vidéo est déposée, elle est
                         détectée, encodée et mise en ligne automatiquement.
                     </p>
-                    <div class="card glass p-3 border-0 mt-3">
-                        <h6 class="text-primary">Flux de Données :</h6>
-                        <ul class="mb-0 small text-white-50">
+                    <div class="info-card">
+                        <h6>Flux de Données :</h6>
+                        <ul>
                             <li>📂 <strong>Ingestion :</strong> Surveillance de dossier via <em>Chokidar</em>.</li>
                             <li>⚙️ <strong>Traitement :</strong> Transcodage HLS adaptatif via <em>FFmpeg</em>
                                 (Node.js).</li>
@@ -142,325 +456,255 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <div class="placeholder-img overflow-hidden"
-                        data-content="Schéma Architecture Technique (Flux de données)">
-                        <!-- [PLACEHOLDER IMAGE 1] -->
-                        <img src="../assets/img/stages/stage2/Shema.png" alt="Schéma Architecture">
-                    </div>
-                    <p class="text-center text-muted small mt-2">Architecture globale du pipeline VOD et de la stack
-                        Docker.</p>
+                <div class="detail-image">
+                    <img src="../assets/img/stages/stage2/Shema.png" alt="Schéma Architecture">
+                    <p class="image-caption">Architecture globale du pipeline VOD et de la stack Docker.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. INTERFACE PUBLIQUE -->
+        <section class="detail-section">
+            <h2
+                style="text-align: center; margin-bottom: 3rem; font-family: var(--font-heading); font-size: 2rem; color: var(--text-primary);">
+                3. Interface Publique (Vitrine)
+            </h2>
+            <p
+                style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Développement d'une Landing Page immersive en Vue.js pour présenter le produit.
+                Le design reprend les codes des plateformes de streaming (Style Netflix/Zen) avec une mise en
+                page aérée et visuelle.
+            </p>
+
+            <div class="image-grid grid-single" style="margin-bottom: 3rem;">
+                <div class="detail-image">
+                    <img src="../assets/img/stages/stage2/LandingPageBase.png" alt="Hero Section">
+                    <p class="image-caption">Landing Page : Hero Section immersive.</p>
                 </div>
             </div>
 
-            <!-- 3. INTERFACE PUBLIQUE (VITRINE) -->
-            <div class="row mb-5">
-                <div class="col-12 mb-4">
-                    <h2 class="h3 text-white mb-3">3. Interface Publique (Vitrine)</h2>
-                    <p class="text-muted">
-                        Développement d'une Landing Page immersive en Vue.js pour présenter le produit.
-                        Le design reprend les codes des plateformes de streaming (Style Netflix/Zen) avec une mise en
-                        page aérée et visuelle.
-                    </p>
+            <div class="image-grid">
+                <div class="detail-image">
+                    <img src="../assets/img/stages/stage2/LandingPageDifferentesOffres.png" alt="Section Tarifs">
+                    <p class="image-caption">Offres & Tarifs - Les tarifs sont récupérés dynamiquement via Stripe.</p>
                 </div>
-
-                <div class="col-12 mb-4">
-                    <div class="placeholder-img overflow-hidden" style="min-height: 400px;"
-                        data-content="Haut de la page d'accueil (Hero Section)">
-                        <!-- [PLACEHOLDER IMAGE 2] -->
-                        <img src="../assets/img/stages/stage2/LandingPageBase.png" alt="Hero Section">
-                    </div>
-                    <p class="text-center text-muted small mt-2">Landing Page : Hero Section immersive.</p>
-                </div>
-
-                <div class="col-md-6 mb-4">
-                    <div class="card glass h-100 border-0">
-                        <div class="placeholder-img overflow-hidden" style="min-height: 300px;"
-                            data-content="Section des tarifs (Stripe)">
-                            <!-- [PLACEHOLDER IMAGE 3] -->
-                            <img src="../assets/img/stages/stage2/LandingPageDifferentesOffres.png"
-                                alt="Section Tarifs">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="h6 text-white text-center mt-2">Offres & Tarifs</h5>
-                            <p class="small text-muted text-center mb-0">Les tarifs sont récupérés dynamiquement via
-                                Stripe.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 mb-4">
-                    <div class="card glass h-100 border-0">
-                        <div class="placeholder-img overflow-hidden" style="min-height: 300px;"
-                            data-content="Page de maintenance">
-                            <!-- [PLACEHOLDER IMAGE 4] -->
-                            <img src="../assets/img/stages/stage2/LandingPageMaintenance.png" alt="Page Maintenance">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="h6 text-white text-center mt-2">Gestion d'Incident</h5>
-                            <p class="small text-muted text-center mb-0">Mode maintenance activable à chaud par
-                                l'administrateur.</p>
-                        </div>
-                    </div>
+                <div class="detail-image">
+                    <img src="../assets/img/stages/stage2/LandingPageMaintenance.png" alt="Page Maintenance">
+                    <p class="image-caption">Gestion d'Incident - Mode maintenance activable à chaud par
+                        l'administrateur.</p>
                 </div>
             </div>
+        </section>
 
-            <!-- 4. AUTHENTIFICATION -->
-            <div class="row mb-5 align-items-center">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h2 class="h3 text-white mb-3">4. Authentification Sécurisée</h2>
-                    <p class="text-muted">
+        <!-- 4. AUTHENTIFICATION -->
+        <section class="detail-section">
+            <div class="section-row">
+                <div class="section-text">
+                    <h2>4. Authentification Sécurisée</h2>
+                    <p>
                         Mise en place d'un système robuste basé sur <strong>JWT</strong> (JSON Web Tokens).
                         L'accès au contenu est strictement protégé : middleware de vérification sur le backend et
                         Navigation Guards sur le frontend (Vue Router).
                     </p>
-                    <ul class="list-unstyled text-white-50 small mt-3">
-                        <li class="mb-2">🔐 Tokens session longue (30 jours)</li>
-                        <li class="mb-2">🚫 Protection Brute-Force (Rate Limiting)</li>
-                        <li class="mb-2">👁️ Toggle visibilité mot de passe</li>
-                    </ul>
+                    <div class="info-card">
+                        <h6>Sécurité :</h6>
+                        <ul>
+                            <li>🔐 Tokens session longue (30 jours)</li>
+                            <li>🚫 Protection Brute-Force (Rate Limiting)</li>
+                            <li>👁️ Toggle visibilité mot de passe</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="placeholder-img overflow-hidden" data-content="Page Se Connecter">
-                                <!-- [PLACEHOLDER IMAGE 5] -->
-                                <img src="../assets/img/stages/stage2/PageConnexion.png" alt="Page Login">
-                            </div>
-                            <p class="text-center text-muted small mt-2">Interface de Connexion.</p>
+                <div>
+                    <div class="image-grid">
+                        <div class="detail-image">
+                            <img src="../assets/img/stages/stage2/PageConnexion.png" alt="Page Login">
+                            <p class="image-caption">Interface de Connexion.</p>
                         </div>
-                        <div class="col-md-6">
-                            <div class="placeholder-img overflow-hidden" data-content="Page S'inscrire">
-                                <!-- [PLACEHOLDER IMAGE 6] -->
-                                <img src="../assets/img/stages/stage2/PageInscription.png" alt="Page Register">
-                            </div>
-                            <p class="text-center text-muted small mt-2">Interface d'Inscription.</p>
+                        <div class="detail-image">
+                            <img src="../assets/img/stages/stage2/PageInscription.png" alt="Page Register">
+                            <p class="image-caption">Interface d'Inscription.</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- 5. PAIEMENT & ABONNEMENTS -->
-            <div class="row mb-5 flex-row-reverse align-items-center">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h2 class="h3 text-white mb-3">5. Paiement & Abonnements</h2>
-                    <p class="text-muted">
+        <!-- 5. PAIEMENT & ABONNEMENTS -->
+        <section class="detail-section">
+            <div class="section-row reverse">
+                <div class="section-text">
+                    <h2>5. Paiement & Abonnements</h2>
+                    <p>
                         Intégration complète de l'API <strong>Stripe</strong> pour la gestion des abonnements
                         récurrents.
                         Le système gère automatiquement les droits d'accès (Segmentation : Meditypno, Hypnolangue, Kids)
                         via Webhooks.
                     </p>
-                    <p class="text-muted small">
+                    <p style="font-size: 0.95rem;">
                         Un système de "Codes d'activation" a également été développé pour permettre la vente physique
                         d'abonnements sans CB.
                     </p>
                 </div>
-                <div class="col-lg-8">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="placeholder-img overflow-hidden" data-content="Page Choix Abonnements">
-                                <!-- [PLACEHOLDER IMAGE 7] -->
-                                <img src="../assets/img/stages/stage2/ChoixTroisPaiementApresInscription.png"
-                                    alt="Choix Abonnements">
-                            </div>
-                            <p class="text-center text-muted small mt-2">Tunnel d'achat : Sélection de l'offre.</p>
+                <div>
+                    <div class="image-grid">
+                        <div class="detail-image">
+                            <img src="../assets/img/stages/stage2/ChoixTroisPaiementApresInscription.png"
+                                alt="Choix Abonnements">
+                            <p class="image-caption">Tunnel d'achat : Sélection de l'offre.</p>
                         </div>
-                        <div class="col-md-6">
-                            <div class="placeholder-img overflow-hidden" data-content="Interface Paiement Stripe">
-                                <!-- [PLACEHOLDER IMAGE 8] -->
-                                <img src="../assets/img/stages/stage2/PagePaiementStripes.png" alt="Interface Stripe">
-                            </div>
-                            <p class="text-center text-muted small mt-2">Checkout sécurisé Stripe.</p>
+                        <div class="detail-image">
+                            <img src="../assets/img/stages/stage2/PagePaiementStripes.png" alt="Interface Stripe">
+                            <p class="image-caption">Checkout sécurisé Stripe.</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- 6. L'APPLICATION (ESPACE MEMBRE) -->
-            <div class="row mb-5">
-                <div class="col-12 mb-4">
-                    <h2 class="h3 text-white mb-3">6. L'Application (Espace Membre)</h2>
-                    <p class="text-muted">
-                        Une fois connecté, l'utilisateur accède à "Meditypno", l'interface de streaming.
-                        Développement d'un lecteur vidéo HLS sur mesure (VideoPlayer.vue) et d'une navigation fluide.
+        <!-- 6. L'APPLICATION -->
+        <section class="detail-section">
+            <h2
+                style="text-align: center; margin-bottom: 3rem; font-family: var(--font-heading); font-size: 2rem; color: var(--text-primary);">
+                6. L'Application (Espace Membre)
+            </h2>
+            <p
+                style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Une fois connecté, l'utilisateur accède à "Meditypno", l'interface de streaming.
+                Développement d'un lecteur vidéo HLS sur mesure (VideoPlayer.vue) et d'une navigation fluide.
+            </p>
+
+            <div class="image-grid grid-single" style="margin-bottom: 2rem;">
+                <div class="detail-image">
+                    <img src="../assets/img/stages/stage2/AcceuilPerso.png" alt="Haut Page Home">
+                    <p class="image-caption">Espace Membre : Accueil personnalisé.</p>
+                </div>
+            </div>
+
+            <div class="image-grid grid-single">
+                <div class="detail-image">
+                    <img src="../assets/img/stages/stage2/CatalogueVideo.png" alt="Catalogue Vidéos">
+                    <p class="image-caption">Catalogue : Grille de contenu avec filtrage par tags.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. BACK-OFFICE ADMINISTRATEUR -->
+        <section class="detail-section">
+            <h2
+                style="text-align: center; margin-bottom: 2rem; font-family: var(--font-heading); font-size: 2rem; color: var(--text-primary);">
+                7. Back-Office Administrateur
+            </h2>
+            <p
+                style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Développement d'un Dashboard complet pour donner une autonomie totale à l'entreprise.
+                L'administration permet de piloter le contenu, les utilisateurs et les ventes sans toucher au code.
+            </p>
+
+            <div class="admin-grid">
+                <div class="admin-card">
+                    <div class="admin-card-image">
+                        <img src="../assets/img/stages/stage2/AdminPageGlobale.png" alt="Dashboard Pilotage">
+                    </div>
+                    <div class="admin-card-body">
+                        <h5>Pilotage Global</h5>
+                        <p>Interrupteur de maintenance, Ajustement dynamique des prix Stripe.</p>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <div class="admin-card-image">
+                        <img src="../assets/img/stages/stage2/AdminGestionAdministrateur.png" alt="CRM Clients">
+                    </div>
+                    <div class="admin-card-body">
+                        <h5>CRM & Utilisateurs</h5>
+                        <p>Gestion des abonnés, Export CSV, Assignation manuelle.</p>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <div class="admin-card-image">
+                        <img src="../assets/img/stages/stage2/AdminBiblioDeContenu.png" alt="Bibliothèque Vidéo">
+                    </div>
+                    <div class="admin-card-body">
+                        <h5>Gestion de Contenu</h5>
+                        <p>Édition des métadonnées, Tags, et Vues.</p>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <div class="admin-card-image">
+                        <img src="../assets/img/stages/stage2/AdminPageDragAndDrop.png" alt="Upload Interface">
+                    </div>
+                    <div class="admin-card-body">
+                        <h5>Ingestion Vidéo</h5>
+                        <p>Upload Drag & Drop avec barre de progression temps réel.</p>
+                    </div>
+                </div>
+
+                <div class="admin-card full-width-card horizontal-card">
+                    <div class="admin-card-image">
+                        <img src="../assets/img/stages/stage2/GestionDesCodes.png" alt="Générateur Codes">
+                    </div>
+                    <div class="admin-card-body">
+                        <h5>Vente Physique & Partenariats</h5>
+                        <p style="margin-bottom: 1rem;">
+                            Interface dédiée à la génération massive de codes d'activation (pour cartes
+                            cadeaux ou vente hors ligne).
+                            Permet d'exporter des listes CSV de codes valides pour les 3 types d'abonnements.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag">Génération CSV</span>
+                            <span class="tag">Gestion Stocks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. MONITORING & ANALYTICS -->
+        <section class="detail-section">
+            <h2
+                style="text-align: center; margin-bottom: 2rem; font-family: var(--font-heading); font-size: 2rem; color: var(--text-primary);">
+                8. Monitoring & Analytics
+            </h2>
+            <p
+                style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Intégration d'outils de suivi pour garantir la performance et comprendre l'usage de la plateforme.
+                Utilisation de solutions respectueuses de la vie privée (Umami) et de métriques en temps réel.
+            </p>
+
+            <div class="image-grid grid-single">
+                <div class="detail-image">
+                    <img src="../assets/img/stages/stage2/Umami.png" alt="Dashboard Umami Analytics">
+                    <p class="image-caption">Dashboard Umami : Suivi des visiteurs et des performances en temps réel.
                     </p>
                 </div>
-
-                <div class="col-12 mb-4">
-                    <div class="placeholder-img overflow-hidden" style="min-height: 150px;"
-                        data-content="Haut de page /home (Navbar, Bienvenue)">
-                        <!-- [PLACEHOLDER IMAGE 9] -->
-                        <img src="../assets/img/stages/stage2/AcceuilPerso.png" alt="Haut Page Home">
-                    </div>
-                    <p class="text-center text-muted small mt-2">Espace Membre : Accueil personnalisé.</p>
-                </div>
-
-                <div class="col-12">
-                    <div class="placeholder-img overflow-hidden" style="min-height: 400px;"
-                        data-content="Catalogue : Grille Vidéos + Recherche Tags">
-                        <!-- [PLACEHOLDER IMAGE 10] -->
-                        <img src="../assets/img/stages/stage2/CatalogueVideo.png" alt="Catalogue Vidéos">
-                    </div>
-                    <p class="text-center text-muted small mt-2">Catalogue : Grille de contenu avec filtrage par tags.
-                    </p>
-                </div>
             </div>
+        </section>
 
-            <!-- 7. BACK-OFFICE ADMINISTRATEUR -->
-            <div class="row mb-5">
-                <div class="col-12 mb-4">
-                    <h2 class="h3 text-white mb-3 text-center">7. Back-Office Administrateur</h2>
-                    <p class="text-muted text-center w-75 mx-auto">
-                        Développement d'un Dashboard complet pour donner une autonomie totale à l'entreprise.
-                        L'administration permet de piloter le contenu, les utilisateurs et les ventes sans toucher au
-                        code.
-                    </p>
-                </div>
+        <!-- CTA - VOIR LE SITE -->
+        <section class="cta-section">
+            <h2>Découvrir le projet en live</h2>
+            <a href="https://meditypno.ermes-equilibre.com/" target="_blank" rel="noopener noreferrer" class="cta-btn">
+                <span>Voir le site</span>
+                <i class="fas fa-external-link-alt"></i>
+            </a>
+            <p class="cta-note">(Le site est en production et accessible au public)</p>
+        </section>
 
-                <!-- Ligne 1 : Pilotage & CRM -->
-                <div class="col-lg-6 mb-4">
-                    <div class="card glass h-100 border-0">
-                        <div class="placeholder-img card-img-top overflow-hidden" style="height: 250px;"
-                            data-content="Haut Dashboard (Boutons maintenance, tarifs)">
-                            <!-- [PLACEHOLDER IMAGE 11] -->
-                            <img src="../assets/img/stages/stage2/AdminPageGlobale.png" alt="Dashboard Pilotage">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="h6 text-white">Pilotage Global</h5>
-                            <p class="small text-muted mb-0">Interrupteur de maintenance, Ajustement dynamique des prix
-                                Stripe.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 mb-4">
-                    <div class="card glass h-100 border-0">
-                        <div class="placeholder-img card-img-top overflow-hidden" style="height: 250px;"
-                            data-content="CRM Clients (Tableau + Export)">
-                            <!-- [PLACEHOLDER IMAGE 12] -->
-                            <img src="../assets/img/stages/stage2/AdminGestionAdministrateur.png" alt="CRM Clients">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="h6 text-white">CRM & Utilisateurs</h5>
-                            <p class="small text-muted mb-0">Gestion des abonnés, Export CSV, Assignation manuelle.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ligne 2 : Vidéo & Upload -->
-                <div class="col-lg-6 mb-4">
-                    <div class="card glass h-100 border-0">
-                        <div class="placeholder-img card-img-top overflow-hidden" style="height: 250px;"
-                            data-content="Bibliothèque Vidéo">
-                            <!-- [PLACEHOLDER IMAGE 13] -->
-                            <img src="../assets/img/stages/stage2/AdminBiblioDeContenu.png" alt="Bibliothèque Vidéo">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="h6 text-white">Gestion de Contenu</h5>
-                            <p class="small text-muted mb-0">Édition des métadonnées, Tags, et Vues.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 mb-4">
-                    <div class="card glass h-100 border-0">
-                        <div class="placeholder-img card-img-top overflow-hidden" style="height: 250px;"
-                            data-content="Interface Upload Drag & Drop">
-                            <!-- [PLACEHOLDER IMAGE 14] -->
-                            <img src="../assets/img/stages/stage2/AdminPageDragAndDrop.png" alt="Upload Interface">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="h6 text-white">Ingestion Vidéo</h5>
-                            <p class="small text-muted mb-0">Upload Drag & Drop avec barre de progression temps réel.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ligne 3 : Vente Physique -->
-                <div class="col-12 mt-2">
-                    <div class="card glass border-0">
-                        <div class="row g-0 align-items-center">
-                            <div class="col-md-4">
-                                <div class="placeholder-img overflow-hidden h-100"
-                                    style="min-height: 200px; border-radius: 8px 0 0 8px;"
-                                    data-content="Générateur Codes Activation">
-                                    <!-- [PLACEHOLDER IMAGE 15] -->
-                                    <img src="../assets/img/stages/stage2/GestionDesCodes.png" alt="Générateur Codes">
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="h6 text-white">Vente Physique & Partenariats</h5>
-                                    <p class="text-muted small mb-3">
-                                        Interface dédiée à la génération massive de codes d'activation (pour cartes
-                                        cadeaux ou vente hors ligne).
-                                        Permet d'exporter des listes CSV de codes valides pour les 3 types
-                                        d'abonnements.
-                                    </p>
-                                    <div class="d-flex gap-2">
-                                        <span
-                                            class="badge border border-secondary text-secondary bg-transparent">Génération
-                                            CSV</span>
-                                        <span
-                                            class="badge border border-secondary text-secondary bg-transparent">Gestion
-                                            Stocks</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- 8. MONITORING & ANALYTICS -->
-            <div class="row mb-5">
-                <div class="col-12 mb-4">
-                    <h2 class="h3 text-white mb-3 text-center">8. Monitoring & Analytics</h2>
-                    <p class="text-muted text-center w-75 mx-auto">
-                        Intégration d'outils de suivi pour garantir la performance et comprendre l'usage de la
-                        plateforme.
-                        Utilisation de solutions respectueuses de la vie privée (Umami) et de métriques en temps réel.
-                    </p>
-                </div>
-
-                <div class="col-12">
-                    <div class="rounded-3 overflow-hidden shadow-lg border border-secondary border-opacity-25">
-                        <img src="../assets/img/stages/stage2/Umami.png" alt="Dashboard Umami Analytics"
-                            class="img-fluid w-100 object-fit-cover">
-                    </div>
-                    <p class="text-center text-muted small mt-2">Dashboard Umami : Suivi des visiteurs et des
-                        performances en temps réel.</p>
-                </div>
-            </div>
-
-            <!-- CTA - VOIR LE SITE -->
-            <div class="row mt-5 mb-5 text-center">
-                <div class="col-12">
-                    <h2 class="h4 text-white mb-4">Découvrir le projet en live</h2>
-                    <a href="https://meditypno.ermes-equilibre.com/" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg">
-                        Voir le site <i class="bi bi-box-arrow-up-right ms-2"></i>
-                    </a>
-                    <p class="text-muted small mt-3">(Le site est en production et accessible au public)</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="text-center py-4 glass border-top border-secondary border-opacity-10">
-        <div class="container">
-            <p class="mb-0 text-muted small">&copy; 2026 Léo Vieux. Tous droits réservés.</p>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Léo Vieux. Tous droits réservés.</p>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>

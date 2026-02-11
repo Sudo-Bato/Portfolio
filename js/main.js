@@ -1,217 +1,340 @@
-// js/main.js
+// Main JavaScript for Portfolio
+// Navigation and Core Functionality
 
-// Attendre que le DOM soit chargé
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize
+    initNavigation();
+    initParticles();
+    // AOS disabled - user wants no scroll animations
+    initScrollEffects();
+    initTypingEffect();
+});
 
-    const pageContent = document.getElementById('page-content');
+// ==================== NAVIGATION ====================
+function initNavigation() {
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
     const navLinks = document.querySelectorAll('.nav-link');
-    const sectionsToLoad = [
-        'accueil',
-        'cv',
-        'competences',
-        'stage',
-        'veille',
-        'ateliers',
-        'contact'
-    ];
-    
-    // --- 1. Logique d'inclusion dynamique des sections ---
-    
-    /**
-     * Charge tous les fragments HTML et les insère dans le conteneur principal.
-     */
-    function includeAllSections() {
-        // Crée une promesse de récupération pour chaque section
-        const fetchPromises = sectionsToLoad.map(pageName => {
-            const filePath = `sections/${pageName}.html`;
-            return fetch(filePath)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Erreur de chargement pour la section ${pageName}: ${response.statusText}`);
-                    }
-                    return response.text();
-                })
-                .catch(error => {
-                    console.error('Erreur lors du chargement de la section:', pageName, error);
-                    // Retourne un message d'erreur si la section ne charge pas
-                    return `<section id="${pageName}" class="error-section"><h2>Erreur de chargement pour ${pageName}</h2><p>Le contenu n'a pas pu être chargé.</p></section>`;
+    const navbar = document.getElementById('navbar');
+
+    // Mobile menu toggle
+    navToggle?.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
+
+    // Navigation link clicks
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Get target section
+            const targetId = link.getAttribute('data-section');
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                // Remove active class from all links
+                navLinks.forEach(l => l.classList.remove('active'));
+
+                // Add active class to clicked link
+                link.classList.add('active');
+
+                // Close mobile menu
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+
+                // Smooth scroll to section
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
-        });
 
-        // Attend que toutes les promesses soient résolues
-        Promise.all(fetchPromises)
-            .then(htmlContents => {
-                // Injecte tout le contenu chargé dans la balise <main>
-                pageContent.innerHTML = htmlContents.join('');
-                
-                // **** POINT CLÉ : Initialiser la logique qui dépend du contenu après le chargement ****
-                initializeContentLogic();
-            })
-            .catch(error => {
-                console.error('Erreur fatale lors du chargement des sections:', error);
-            });
-    }
-    
-    // --- 2. Fonctions d'initialisation de la logique existante ---
-    
-    /**
-     * Regroupe toutes les fonctions qui doivent être appelées APRÈS que le contenu ait été injecté.
-     */
-    function initializeContentLogic() {
-        
-        // On récupère les sections et éléments animés une fois qu'ils sont dans le DOM
-        const sections = document.querySelectorAll('section');
-        
-        // Navigation Active au Scroll
-        window.addEventListener('scroll', () => setActiveNavLink(sections, navLinks));
-        setActiveNavLink(sections, navLinks); // Appel initial pour mettre en évidence la section Accueil
-
-        // Fermer le menu mobile en cliquant sur un lien (Relance la logique)
-        setupNavLinkClosing();
-
-        // Gère le défilement initial si une ancre est présente dans l'URL
-        handleInitialScroll(sections);
-        
-        // Initialisation de l'animation au défilement
-        setupScrollAnimation();
-        
-        // Ré-attache le gestionnaire du formulaire de contact
-        setupContactForm();
-    }
-    
-    
-    /**
-     * Met en évidence le lien de navigation correspondant à la section visible.
-     */
-    function setActiveNavLink(sections, navLinks) {
-        let currentSection = '';
-        
-        sections.forEach(section => {
-            // Utilise getBoundingClientRect pour une meilleure compatibilité et des calculs basés sur la vue
-            const rect = section.getBoundingClientRect();
-            // Détermine la section visible lorsque son bord supérieur est au-dessus de 200px du haut
-            if (rect.top <= 200) {
-                currentSection = section.getAttribute('id');
+                // Update URL hash without jumping
+                history.pushState(null, null, `#${targetId}`);
             }
         });
-        
-        // Si aucune section n'est encore visible (début de page), on utilise 'accueil'
-        if (currentSection === '') {
-             currentSection = sections[0] ? sections[0].getAttribute('id') : '';
+    });
+
+    // Navbar scroll effect
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
 
-        // Met à jour la classe 'active'
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === currentSection) {
-                link.classList.add('active');
+        lastScroll = currentScroll;
+
+        // Update active link based on scroll position (scroll spy)
+        updateActiveNavLink();
+    });
+
+    // Scroll spy function
+    function updateActiveNavLink() {
+        const sections = document.querySelectorAll('.section');
+        const scrollPosition = window.scrollY + 150; // Offset for navbar
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-section') === sectionId) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
     }
 
-    /**
-     * Gère le défilement initial vers l'ancre spécifiée dans l'URL (#cv, #contact, etc.)
-     */
-    function handleInitialScroll(sections) {
-        const hash = window.location.hash;
-        if (hash) {
-            const targetElement = document.querySelector(hash);
-            if (targetElement) {
-                // Ajoute un léger délai pour s'assurer que le navigateur a fini de calculer le layout
-                setTimeout(() => {
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100); 
+    // Handle initial hash
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+        const targetLink = document.querySelector(`[data-section="${hash}"]`);
+        if (targetLink) {
+            setTimeout(() => {
+                targetLink.click();
+            }, 100);
+        }
+    }
+}
+
+// ==================== PARTICLES.JS ====================
+function initParticles() {
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#6366f1'
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#6366f1',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'grab'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+    }
+}
+
+// ==================== AOS (Animate On Scroll) ====================
+// AOS disabled - user wants instant load without scroll animations
+
+// ==================== SCROLL EFFECTS ====================
+function initScrollEffects() {
+    // Parallax effect for scroll indicator
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+
+        if (scrollIndicator && scrolled < window.innerHeight) {
+            scrollIndicator.style.opacity = 1 - (scrolled / 500);
+        }
+    });
+
+    // Scroll indicator click
+    scrollIndicator?.addEventListener('click', () => {
+        window.scrollTo({
+            top: window.innerHeight,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// ==================== TYPING EFFECT ====================
+function initTypingEffect() {
+    const typingElement = document.querySelector('.typing-text');
+    if (!typingElement) return;
+
+    const text = typingElement.textContent;
+    typingElement.textContent = '';
+    typingElement.style.opacity = '1';
+
+    let index = 0;
+
+    function type() {
+        if (index < text.length) {
+            typingElement.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, 100);
+        }
+    }
+
+    // Start typing after a short delay
+    setTimeout(type, 500);
+}
+
+
+
+// ==================== CARD TILT EFFECT ====================
+function initCardTilt() {
+    // Only apply to project cards, not stage cards
+    const cards = document.querySelectorAll('.project-card');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Reduced intensity: divide by 30 instead of 10 for more subtle effect
+            const rotateX = (y - centerY) / 30;
+            const rotateY = -(x - centerX) / 30;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        });
+    });
+}
+
+// Initialize card tilt on desktop only
+if (window.innerWidth > 768) {
+    initCardTilt();
+}
+
+// ==================== SMOOTH REVEAL ON SCROLL ====================
+// IntersectionObserver disabled - user wants no scroll animations
+
+// ==================== PERFORMANCE OPTIMIZATION ====================
+// Debounce function for scroll events
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// ==================== ACCESSIBILITY ====================
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const navMenu = document.getElementById('navMenu');
+        const navToggle = document.getElementById('navToggle');
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+    }
+});
+
+// Focus trap for mobile menu
+const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+document.getElementById('navMenu')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+        const menu = e.currentTarget;
+        const focusable = menu.querySelectorAll(focusableElements);
+        const firstFocusable = focusable[0];
+        const lastFocusable = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+            if (document.activeElement === firstFocusable) {
+                lastFocusable.focus();
+                e.preventDefault();
             }
         } else {
-             // Si pas de hash, défilement au tout début de la page
-             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    }
-    
-    /**
-     * Attache la logique de fermeture du menu mobile lors du clic sur un lien.
-     */
-    function setupNavLinkClosing() {
-        const navList = document.querySelector('.nav-list');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (navList && navList.classList.contains('active')) {
-                    navList.classList.remove('active');
-                    
-                    const hamburgerLines = document.querySelectorAll('.hamburger-line');
-                    hamburgerLines.forEach(line => line.classList.remove('active'));
-                }
-            });
-        });
-    }
-    
-    /**
-     * Attache la logique du formulaire de contact.
-     */
-    function setupContactForm() {
-        const contactForm = document.querySelector('.contact-form');
-        
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
+            if (document.activeElement === lastFocusable) {
+                firstFocusable.focus();
                 e.preventDefault();
-                
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-                
-                console.log('Formulaire soumis:', { name, email, message });
-                
-                alert('Merci pour votre message ! Je vous répondrai dès que possible.');
-                contactForm.reset();
-            });
+            }
         }
     }
-    
-    /**
-     * Initialisation et gestion de l'animation au défilement.
-     */
-    function setupScrollAnimation() {
-        const animatedElements = document.querySelectorAll('.atelier-card, .veille-article, .competence-category');
-        
-        // Initialisation des styles pour l'animation
-        animatedElements.forEach(element => {
-            element.style.opacity = 0;
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        });
+});
 
-        function checkScroll() {
-            animatedElements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = 1;
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', checkScroll);
-        // Vérifier au chargement initial
-        checkScroll();
-    }
-
-    // --- 3. Logique du Menu Mobile (conservation du code initial) ---
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navList = document.querySelector('.nav-list'); // Utilisé comme main-navigation
-
-    if (mobileMenuToggle && navList) {
-        mobileMenuToggle.addEventListener('click', function() {
-            navList.classList.toggle('active');
-            
-            // Animation des lignes du hamburger
-            const hamburgerLines = document.querySelectorAll('.hamburger-line');
-            hamburgerLines.forEach(line => line.classList.toggle('active'));
-        });
-    }
-    // ------------------------------------------------------------
-    
-    // DÉMARRAGE : Lancement du chargement de toutes les sections
-    includeAllSections();
+// ==================== LOADING ANIMATION ====================
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+    // AOS refresh disabled
 });
