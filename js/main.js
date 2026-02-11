@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // AOS disabled - user wants no scroll animations
     initScrollEffects();
     initTypingEffect();
+    initSkillsAnimation();
 });
 
 // ==================== NAVIGATION ====================
@@ -245,6 +246,40 @@ function initTypingEffect() {
 
     // Start typing after a short delay
     setTimeout(type, 500);
+}
+
+// ==================== SKILLS ANIMATION ====================
+function initSkillsAnimation() {
+    const skillItems = document.querySelectorAll('.skill-item');
+
+    if (skillItems.length === 0) return;
+
+    const observerOptions = {
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const skillItem = entry.target;
+                const progressBar = skillItem.querySelector('.skill-progress');
+                const progressValue = progressBar.getAttribute('data-progress');
+
+                // Add visible class and set width
+                skillItem.classList.add('visible');
+                progressBar.style.width = progressValue + '%';
+
+                // Stop observing this element
+                observer.unobserve(skillItem);
+            }
+        });
+    }, observerOptions);
+
+    // Observe all skill items
+    skillItems.forEach(item => {
+        observer.observe(item);
+    });
 }
 
 
