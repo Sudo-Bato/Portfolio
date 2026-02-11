@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage Campus Connecté - Léo Vieux</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Highlight.js for code blocks -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <style>
+        /* Page-specific styles (reuse from stage-ermes.html) */
+        .detail-page {
+            background: var(--bg-dark);
+            min-height: 100vh;
+        }
+
+        .detail-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 18, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+        }
+
+        .detail-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .detail-logo .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-normal);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            transform: translateX(-3px);
+        }
+
+        .detail-content {
+            margin-top: 80px;
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+
+        .detail-header {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .detail-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .detail-intro {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .detail-section {
+            max-width: 1200px;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .section-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-row.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .section-row.reverse>*:first-child {
+            order: 2;
+        }
+
+        .section-row.reverse>*:last-child {
+            order: 1;
+        }
+
+        .section-text h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .detail-image {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .detail-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .image-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1.5rem;
+        }
+
+        .info-card h6 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-card li {
+            color: var(--text-secondary);
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .grid-single {
+            grid-template-columns: 1fr;
+        }
+
+        .dev-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .dev-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .dev-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .dev-card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .dev-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dev-card-body {
+            padding: 1.5rem;
+        }
+
+        .dev-card-body h5 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .dev-card-body p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .code-block {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+
+        .code-block pre {
+            margin: 0;
+            background: transparent;
+        }
+
+        .doc-section {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .doc-section h3 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-section p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .doc-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .doc-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: rgba(99, 102, 241, 0.2);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: var(--radius-xl);
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+        }
+
+        .doc-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        @media (max-width: 992px) {
+            .dev-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .detail-title {
+                font-size: 2.5rem;
+            }
+
+            .section-row,
+            .section-row.reverse {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-row.reverse>*:first-child,
+            .section-row.reverse>*:last-child {
+                order: 0;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dev-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="detail-page">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navbar -->
+    <nav class="detail-navbar">
+        <div class="detail-nav-container">
+            <a href="../index.html" class="detail-logo">
+                <span class="gradient-text">LV</span>
+            </a>
+            <a href="../index.html#stages" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Retour au Portfolio</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="detail-content">
+
+        <!-- Header Section -->
+        <section class="detail-header">
+            <span class="detail-badge">Mai 2025 - Juin 2025</span>
+            <h1 class="detail-title">Stage Campus Connecté</h1>
+            <p class="detail-intro">
+                Développement d'applications web (MP3000 & MTPP) et mise en place d'une infrastructure serveur
+                pour la Mairie de Saint-Gaudens.
+            </p>
+            <div class="tech-tags" style="justify-content: center; margin-top: 2rem;">
+                <span class="tag">PHP 8</span>
+                <span class="tag">MariaDB</span>
+                <span class="tag">Ubuntu Server</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Nginx</span>
+            </div>
+        </section>
+
+        <!-- 1. CONTEXTE & IMMERSION -->
+        <section class="detail-section">
+            <div class="section-row">
+                <div class="section-text">
+                    <h2>1. Immersion au Campus</h2>
+                    <p>
+                        Intégration au sein de l'équipe du Campus Connecté de Saint-Gaudens.
+                        L'objectif initial était de migrer le site existant et de développer des outils internes pour la
+                        gestion des étudiants.
+                        Nous avons commencé par une phase de découverte des lieux et des besoins avec l'équipe.
+                    </p>
+                </div>
+                <div>
+                    <div class="image-grid">
+                        <div class="detail-image">
+                            <img src="../assets/img/stages/stage1/Campus-Vue-de-face.jpeg"
+                                alt="Campus Connecté - Extérieur">
+                        </div>
+                        <div class="detail-image">
+                            <img src="../assets/img/stages/stage1/Campus-image-interieur.jpg"
+                                alt="Campus Connecté - Intérieur">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MP3000 - CONCEPTION -->
+        <section class="detail-section">
+            <div class="section-row reverse">
+                <div class="section-text">
+                    <h2>2. MP3000 : Conception & Maquettage</h2>
+                    <p>
+                        Le projet "Marcel Présence 3000" vise à gérer le pointage des étudiants.
+                        Nous avons commencé par des réunions de brainstorming et des croquis sur papier pour définir
+                        l'UI/UX avant de passer au code.
+                        Organisation du travail en équipe via GitLab.
+                    </p>
+                    <div class="info-card">
+                        <h6>Méthodologie :</h6>
+                        <ul>
+                            <li>✍️ Croquis papier & Maquettes</li>
+                            <li>🤝 Répartition des tâches (Trello/Tableau)</li>
+                            <li>🛠️ Setup Git & GitLab</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="image-grid">
+                        <div class="detail-image">
+                            <img src="../assets/img/stages/stage1/croquis-MP300.png" alt="Croquis Maquette 1">
+                        </div>
+                        <div class="detail-image">
+                            <img src="../assets/img/stages/stage1/tableau-prepa-tache.png" alt="Tableau Tâches">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. INFRASTRUCTURE & SERVEUR -->
+        <section class="detail-section">
+            <div class="section-row">
+                <div class="section-text">
+                    <h2>3. Infrastructure & Système</h2>
+                    <p>
+                        Mise en place d'un serveur dédié pour héberger les applications et la base de données.
+                        Le défi a été de transformer un PC Windows 7 en serveur Linux Ubuntu fonctionnel avec une stack
+                        Docker complète.
+                    </p>
+                    <div class="info-card">
+                        <h6>Stack Technique Déployée :</h6>
+                        <ul>
+                            <li>🐧 <strong>OS :</strong> Ubuntu Server (Installé via clé bootable)</li>
+                            <li>🐳 <strong>Conteneurisation :</strong> Docker</li>
+                            <li>🌐 <strong>Web Server :</strong> Nginx</li>
+                            <li>🐘 <strong>Web App :</strong> PHP 8 + MariaDB</li>
+                            <li>💾 <strong>Backup :</strong> Récupération des données utilisateurs via Kali Linux (Live
+                                USB)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="detail-image">
+                    <img src="../assets/img/stages/stage1/mariadb-php-nginx.png" alt="Stack Technique"
+                        style="object-fit: contain; max-height: 400px;">
+                    <p class="image-caption">Architecture technique du serveur</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. DÉVELOPPEMENT MP3000 -->
+        <section class="detail-section">
+            <h2
+                style="text-align: center; margin-bottom: 3rem; font-family: var(--font-heading); font-size: 2rem; color: var(--text-primary);">
+                4. Développement MP3000
+            </h2>
+            <p
+                style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Réalisation de l'application de pointage. Authentification, génération de QR Codes uniques pour
+                chaque étudiant, et gestion des sessions sécurisées.
+            </p>
+
+            <div class="dev-grid">
+                <div class="dev-card">
+                    <div class="dev-card-image">
+                        <img src="../assets/img/stages/stage1/page-connexion-mp300.webp" alt="Page Connexion">
+                    </div>
+                    <div class="dev-card-body">
+                        <h5>Authentification</h5>
+                        <p>Sécurisation SQL & Sessions PHP.</p>
+                    </div>
+                </div>
+
+                <div class="dev-card">
+                    <div class="dev-card-image">
+                        <img src="../assets/img/stages/stage1/dashboard-mp3000.webp" alt="Dashboard">
+                    </div>
+                    <div class="dev-card-body">
+                        <h5>Dashboard</h5>
+                        <p>Navigation centrale avec cartes.</p>
+                    </div>
+                </div>
+
+                <div class="dev-card">
+                    <div class="dev-card-image">
+                        <img src="../assets/img/stages/stage1/tableau-etudiant-mp3000.webp" alt="Liste Etudiants">
+                    </div>
+                    <div class="dev-card-body">
+                        <h5>Gestion Étudiant</h5>
+                        <p>Liste dynamique, Modals, et Actions.</p>
+                    </div>
+                </div>
+
+                <div class="dev-card">
+                    <div class="dev-card-image">
+                        <img src="../assets/img/stages/stage1/exemple-QR-C-MP3000.webp" alt="Génération QR Code">
+                    </div>
+                    <div class="dev-card-body">
+                        <h5>Générateur QR</h5>
+                        <p>Algorithme de génération d'ID unique.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <pre><code class="language-php">function genererIdQrCode($longueur = 25) {
+    // Ensemble des caracteres qu'on peut utiliser
+    $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $idQrCode = '';
+    $maxIndex = strlen($caracteres) - 1;
+
+    for ($i = 0; $i < $longueur; $i++) {
+        // Utilise une fonction cryptographiquement sécurisée
+        $index = random_int(0, $maxIndex);
+        $idQrCode .= $caracteres[$index];
+    }
+    return $idQrCode;
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- 5. MTPP & FINALISATION -->
+        <section class="detail-section">
+            <div class="section-row">
+                <div class="section-text">
+                    <h2>5. Projet MTPP & Déploiement</h2>
+                    <p>
+                        Lancement du second projet "Massin Tout Petit Plus" (Gestion d'événements).
+                        Partage de la base de données avec MP3000.
+                    </p>
+                    <p>
+                        <strong>Défi Final :</strong> Le déploiement sur le serveur central a posé un problème technique
+                        majeur le dernier jour (accès caméra bloqué sans SSL/HTTPS sur IP locale).
+                    </p>
+                    <p>
+                        <strong>Solution de contournement :</strong> Déploiement distribué. Chaque poste du campus fait
+                        tourner le site en local (Uwamp) tout en se connectant à la base de données centralisée sur le
+                        serveur.
+                    </p>
+                </div>
+                <div class="detail-image">
+                    <img src="../assets/img/stages/stage1/MTPP-dashboard.png" alt="Design MTPP">
+                    <p class="image-caption">Interface de gestion d'événements MTPP</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOCUMENTATION -->
+        <section class="detail-section">
+            <div class="doc-section">
+                <h3>Documentation & Transmission</h3>
+                <p>
+                    Rédaction d'une documentation technique et utilisateur complète pour assurer la pérennité
+                    des outils après mon départ.
+                    Passation de connaissances à l'équipe encadrante.
+                </p>
+                <div class="doc-buttons">
+                    <a href="../assets/docs/MP3000.pdf" class="doc-btn" download>
+                        <i class="fas fa-file-pdf" style="font-size: 1.2rem;"></i>
+                        <span>Documentation MP3000</span>
+                    </a>
+                    <a href="../assets/docs/MTPP.pdf" class="doc-btn" download>
+                        <i class="fas fa-file-pdf" style="font-size: 1.2rem;"></i>
+                        <span>Documentation MTPP</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Léo Vieux. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        // Initialize highlight.js for code syntax highlighting
+        hljs.highlightAll();
+    </script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

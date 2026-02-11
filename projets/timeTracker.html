@@ -1,321 +1,569 @@
 <!DOCTYPE html>
-<html lang="fr" data-bs-theme="dark">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimeTracker App - Léo Vieux</title>
+    <title>TimeTracker Desktop App - Léo Vieux</title>
 
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../styles/custom.css">
-    <!-- Highlight.js for code blocks -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <style>
+        /* Page-specific styles */
+        .detail-page {
+            background: var(--bg-dark);
+            min-height: 100vh;
+        }
+
+        .detail-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 18, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+        }
+
+        .detail-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .detail-logo .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-normal);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            transform: translateX(-3px);
+        }
+
+        .detail-content {
+            margin-top: 80px;
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+
+        .detail-header {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .detail-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .detail-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-intro {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .detail-section {
+            max-width: 1200px;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .section-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-row.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .section-row.reverse>*:first-child {
+            order: 2;
+        }
+
+        .section-row.reverse>*:last-child {
+            order: 1;
+        }
+
+        .section-text h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .detail-image {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .detail-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1.5rem;
+        }
+
+        .info-card h6 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-card li {
+            color: var(--text-secondary);
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .info-card li::before {
+            content: "✅";
+            margin-right: 0.5rem;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .grid-single {
+            grid-template-columns: 1fr;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: var(--text-secondary);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            color: var(--primary-light);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: var(--spacing-lg) 0;
+            margin: var(--spacing-xl) 0;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 3rem;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-xl);
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-glow);
+            transition: all var(--transition-normal);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.8);
+        }
+
+        .platform-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .platform-badge {
+            background: var(--bg-card);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .platform-badge i {
+            color: var(--primary-light);
+        }
+
+        @media (max-width: 768px) {
+            .detail-title {
+                font-size: 2.5rem;
+            }
+
+            .section-row,
+            .section-row.reverse {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-row.reverse>*:first-child,
+            .section-row.reverse>*:last-child {
+                order: 0;
+            }
+
+            .image-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="detail-page">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html">
-                <span class="text-primary">&lt;</span>Léo<span class="text-white">Vieux</span><span
-                    class="text-primary">/&gt;</span>
+    <nav class="detail-navbar">
+        <div class="detail-nav-container">
+            <a href="../index.html" class="detail-logo">
+                <span class="gradient-text">LV</span>
             </a>
-            <a href="../index.html" class="btn btn-outline-light rounded-pill btn-sm">
-                ← Retour au Portfolio
+            <a href="../index.html#projets" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Retour au Portfolio</span>
             </a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="section pt-5 pb-0 min-vh-50 d-flex align-items-center">
-        <div class="container mt-5 pt-5">
-            <div class="row align-items-center">
-                <div class="col-lg-8 mx-auto text-center">
-                    <span class="badge bg-info bg-opacity-10 text-info mb-3 px-3 py-2 rounded-pill">Projet Personnel -
-                        Desktop App</span>
-                    <h1 class="display-4 fw-bold mb-4">TimeTracker <br><span class="text-primary">Electron /
-                            React</span></h1>
-                    <p class="lead text-muted mb-4">
-                        Application de bureau "Offline" pour la gestion et l'analyse du temps. Conçue pour être
-                        légère, privée et multiplateforme (macOS & Windows).
+    <!-- Main Content -->
+    <main class="detail-content">
+
+        <!-- Header Section -->
+        <section class="detail-header">
+            <span class="detail-badge">Projet Personnel • 2023</span>
+            <h1 class="detail-title">TimeTracker</h1>
+            <h2 class="detail-subtitle">Application de bureau pour la gestion du temps</h2>
+            <p class="detail-intro">
+                Application Desktop <strong>100% Offline</strong> développée avec Electron et React.<br>
+                Conçue pour être légère, privée et multiplateforme (macOS & Windows).
+            </p>
+            <div class="tech-tags" style="justify-content: center; margin-top: 2rem;">
+                <span class="tag">Electron</span>
+                <span class="tag">React</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Recharts</span>
+                <span class="tag">Local Storage</span>
+            </div>
+            <div class="platform-badges">
+                <div class="platform-badge">
+                    <i class="fab fa-windows"></i>
+                    <span>Windows (exe)</span>
+                </div>
+                <div class="platform-badge">
+                    <i class="fab fa-apple"></i>
+                    <span>macOS (dmg)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. LE BESOIN INITIAL -->
+        <section class="detail-section">
+            <div class="section-row">
+                <div class="detail-image">
+                    <img src="../assets/img/projects/time_tracker/dashboard.png" alt="TimeTracker Dashboard">
+                </div>
+                <div class="section-text">
+                    <h2>🎯 Le Besoin Initial</h2>
+                    <p>
+                        Projet réalisé pour un <strong>ami musicien</strong> qui souhaitait organiser ses sessions de
+                        pratique (Piano, Solfège, Composition) sans s'encombrer d'une usine à gaz ou d'une application
+                        nécessitant un abonnement.
                     </p>
-                    <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
-                        <span class="badge border border-secondary text-secondary bg-transparent">Electron</span>
-                        <span class="badge border border-secondary text-secondary bg-transparent">React + Vite</span>
-                        <span class="badge border border-secondary text-secondary bg-transparent">TypeScript</span>
-                        <span class="badge border border-secondary text-secondary bg-transparent">Recharts</span>
-                        <span class="badge border border-secondary text-secondary bg-transparent">Local Storage</span>
-                    </div>
-                    <div class="d-flex justify-content-center gap-3">
-                        <a href="https://github.com/Sudo-Bato/TimeTracker" target="_blank"
-                            class="btn btn-primary rounded-pill px-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-github me-2" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                            </svg>
-                            Code Source
-                        </a>
+                    <div class="info-card">
+                        <h6>Contraintes du projet :</h6>
+                        <ul>
+                            <li><strong>⚡ Rapidité</strong> : Lancer un chronomètre en 1 clic</li>
+                            <li><strong>🔒 Privé</strong> : Pas de compte, pas de tracking externe, tout reste sur
+                                l'ordinateur</li>
+                            <li><strong>📊 Visuel</strong> : Voir en un coup d'œil où passe le temps chaque semaine</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Main Screenshot Carousel -->
-            <div class="row justify-content-center mt-5">
-                <div class="col-lg-10">
-                    <div id="projectCarousel" class="carousel slide card glass overflow-hidden shadow-lg"
-                        data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="0"
-                                class="active"></button>
-                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="1"></button>
-                            <button type="button" data-bs-target="#projectCarousel" data-bs-slide-to="2"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="ratio ratio-16x9 d-flex align-items-center justify-content-center">
-                                    <img src="../assets/img/projects/time_tracker/dashboard.png" class="d-block w-100"
-                                        alt="Dashboard Principal" style="object-fit: contain;">
-                                </div>
-                                <div class="carousel-caption d-none d-md-block glass rounded px-3 py-2 text-white">
-                                    <h5 class="mb-0">Tracking en Temps Réel</h5>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="ratio ratio-16x9 d-flex align-items-center justify-content-center">
-                                    <img src="../assets/img/projects/time_tracker/stats.png" class="d-block w-100"
-                                        alt="Vue Statistiques" style="object-fit: contain;">
-                                </div>
-                                <div class="carousel-caption d-none d-md-block glass rounded px-3 py-2 text-white">
-                                    <h5 class="mb-0">Analyses Hebdomadaires</h5>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="ratio ratio-16x9 d-flex align-items-center justify-content-center">
-                                    <img src="../assets/img/projects/time_tracker/profile.png" class="d-block w-100"
-                                        alt="Profil Utilisateur" style="object-fit: contain;">
-                                </div>
-                                <div class="carousel-caption d-none d-md-block glass rounded px-3 py-2 text-white">
-                                    <h5 class="mb-0">Profil & Paramètres</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Précédent</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Suivant</span>
-                        </button>
+        <!-- 2. FONCTIONNALITÉS CLÉS -->
+        <section class="detail-section">
+            <h2
+                style="text-align: center; margin-bottom: 3rem; font-family: var(--font-heading); font-size: 2rem; color: var(--text-primary);">
+                ✨ Fonctionnalités Clés
+            </h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-stopwatch"></i>
                     </div>
+                    <h3>Interface de tracking</h3>
+                    <p>Un timer minimaliste et discret conçu pour ne pas distraire. Lancez votre session en un clic,
+                        sélectionnez votre activité, et laissez l'application tourner en arrière-plan.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Statistiques complètes</h3>
+                    <p>Visualisez votre progression grâce à des graphiques dynamiques. Analysez la répartition de votre
+                        temps par catégorie et identifiez vos jours les plus productifs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3>Gestion du profil</h3>
+                    <p>Personnalisez vos catégories de travail et gérez vos données. Export/import complet au format
+                        JSON pour la sauvegarde et le transfert.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Project Details -->
-    <section class="section py-5">
-        <div class="container">
-            <div class="row g-5">
+            <div class="image-grid" style="margin-top: 3rem;">
+                <div class="detail-image">
+                    <img src="../assets/img/projects/time_tracker/stats.png" alt="Statistiques">
+                    <p class="image-caption">Page Statistiques : Graphiques dynamiques avec Recharts.</p>
+                </div>
+                <div class="detail-image">
+                    <img src="../assets/img/projects/time_tracker/profile.png" alt="Profil">
+                    <p class="image-caption">Page Profil : Gestion des catégories et export de données.</p>
+                </div>
+            </div>
+        </section>
 
-                <!-- Sidebar / Quick Info -->
-                <div class="col-lg-4 order-lg-2">
-                    <div class="card glass p-4 sticky-top text-white" style="top: 100px; z-index: 1;">
-                        <h3 class="h5 text-primary mb-4">Fiche Technique</h3>
+        <!-- 3. ARCHITECTURE & FONCTIONNALITÉS -->
+        <section class="detail-section">
+            <h2
+                style="text-align: center; margin-bottom: 2rem; font-family: var(--font-heading); font-size: 2rem; color: var(--text-primary);">
+                ⚙️ Architecture & Technologies
+            </h2>
+            <p
+                style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                L'application utilise <strong>Electron</strong> pour encapsuler une application web React moderne. Cela
+                permet d'avoir accès au système de fichiers natif tout en gardant une interface fluide développée avec
+                les standards du web.
+            </p>
 
-                        <div class="mb-4">
-                            <h4 class="h6 text-muted text-uppercase small ls-1">Plateforme</h4>
-                            <p>Windows (exe) & macOS (dmg)</p>
-                        </div>
-
-                        <div class="mb-4">
-                            <h4 class="h6 text-muted text-uppercase small ls-1">Stack Technique</h4>
-                            <ul class="list-unstyled small text-white-50">
-                                <li>• Electron (Main process)</li>
-                                <li>• React (Renderer)</li>
-                                <li>• Context API (State)</li>
-                                <li>• date-fns & uuid</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 class="h6 text-muted text-uppercase small ls-1">Données</h4>
-                            <p class="small text-muted mb-0">
-                                Stockage 100% local (JSON). <br>Aucun cloud requis.
-                            </p>
-                        </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
                     </div>
+                    <h3>⚛️ Store Context</h3>
+                    <p>Gestion de l'état global (Timer actif, Logs, Catégories) via React Context API, avec persistance
+                        automatique dans le localStorage.</p>
                 </div>
 
-                <!-- Main Content -->
-                <div class="col-lg-8 order-lg-1">
-
-                    <!-- 1. Le Besoin -->
-                    <div class="mb-5">
-                        <h2 class="h3 text-white mb-3">1. Le Besoin Initial</h2>
-                        <p class="text-muted">
-                            Project réalisé pour un ami musicien qui souhaitait organiser ses sessions de pratique
-                            (Piano, Solfège, Composition) sans s'encombrer d'une usine à gaz ou d'une application
-                            nécessitant un abonnement.
-                        </p>
-                        <div class="card glass p-4">
-                            <h5 class="h6 text-white mb-2">Contraintes :</h5>
-                            <ul class="list-unstyled small text-muted mb-0">
-                                <li class="mb-2">⚡ <strong>Rapidité :</strong> Lancer un chronomètre en 1 clic.</li>
-                                <li class="mb-2">🔒 <strong>Privé :</strong> Pas de compte, pas de tracking externe,
-                                    tout reste sur l'ordinateur.</li>
-                                <li class="mb-0">📊 <strong>Visuel :</strong> Voir en un coup d'œil où passe le temps
-                                    chaque semaine.</li>
-                            </ul>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
                     </div>
+                    <h3>📈 Visualisation</h3>
+                    <p>Intégration de Recharts pour générer des graphiques dynamiques : Pie Chart pour la répartition et
+                        Bar Chart pour l'intensité quotidienne.</p>
+                </div>
 
-                    <!-- Feature Showcase -->
-                    <div class="mb-5">
-                        <h2 class="h3 text-white mb-4">Fonctionnalités Clés</h2>
-
-                        <!-- Feature 1: Dashboard -->
-                        <div class="row align-items-center mb-5">
-                            <div class="col-md-7 mb-3 mb-md-0">
-                                <div class="card glass p-2 border-0">
-                                    <img src="../assets/img/projects/time_tracker/dashboard.png"
-                                        class="img-fluid rounded shadow-sm" alt="Interface de tracking">
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <h3 class="h4 text-primary">Tracking en Temps Réel</h3>
-                                <p class="text-muted">
-                                    Un timer minimaliste et discret conçu pour ne pas distraire. Lancez votre session en
-                                    un clic,
-                                    sélectionnez votre activité, et laissez l'application tourner en arrière-plan
-                                    pendant que vous
-                                    vous concentrez sur l'essentiel.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Feature 2: Stats -->
-                        <div class="row align-items-center mb-5">
-                            <div class="col-md-7 order-md-2 mb-3 mb-md-0">
-                                <div class="card glass p-2 border-0">
-                                    <img src="../assets/img/projects/time_tracker/stats.png"
-                                        class="img-fluid rounded shadow-sm" alt="Statistiques complètes">
-                                </div>
-                            </div>
-                            <div class="col-md-5 order-md-1">
-                                <h3 class="h4 text-primary">Analyses & Statistiques</h3>
-                                <p class="text-muted">
-                                    Visualisez votre progression grâce à des graphiques dynamiques.
-                                    Analysez la répartition de votre temps par catégorie sur la semaine et identifiez
-                                    vos jours
-                                    les plus productifs d'un simple coup d'œil.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Feature 3: Profile -->
-                        <div class="row align-items-center mb-5">
-                            <div class="col-md-7 mb-3 mb-md-0">
-                                <div class="card glass p-2 border-0">
-                                    <img src="../assets/img/projects/time_tracker/profile.png"
-                                        class="img-fluid rounded shadow-sm" alt="Gestion du profil">
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <h3 class="h4 text-primary">Profil & Paramètres</h3>
-                                <p class="text-muted">
-                                    Personnalisez vos catégories de travail et gérez vos données.
-                                    L'application permet un export/import complet de vos données au format JSON, vous
-                                    garantissant
-                                    la pleine maîtrise de vos informations.
-                                </p>
-                            </div>
-                        </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
                     </div>
+                    <h3>📦 Build & Release</h3>
+                    <p>Configuration de scripts npm personnalisés pour builder l'application sur toutes les
+                        architectures : Mac ARM/Intel, Windows ARM/Intel.</p>
+                </div>
+            </div>
+        </section>
 
-                    <!-- 2. Architecture -->
-                    <div class="mb-5">
-                        <h2 class="h3 text-white mb-3">2. Architecture & Fonctionnalités</h2>
-                        <p class="text-muted mb-4">
-                            L'application utilise <strong>Electron</strong> pour encapsuler une application web React
-                            moderne. Cela permet d'avoir accès au système de fichiers natif tout en gardant une
-                            interface fluide développée avec les standards du web.
-                        </p>
-
-                        <div class="row g-4">
-                            <!-- Context API -->
-                            <div class="col-md-6">
-                                <div class="card glass h-100 p-3">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <span class="fs-4 me-2">⚛️</span>
-                                        <h5 class="h6 text-white mb-0">Store Context</h5>
-                                    </div>
-                                    <p class="small text-muted mb-0">
-                                        Gestion de l'état global (Timer actif, Logs, Catégories) via React Context API,
-                                        avec persistance automatique dans le <code>localStorage</code> à chaque
-                                        modification.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Data Viz -->
-                            <div class="col-md-6">
-                                <div class="card glass h-100 p-3">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <span class="fs-4 me-2">📈</span>
-                                        <h5 class="h6 text-white mb-0">Visualisation</h5>
-                                    </div>
-                                    <p class="small text-muted mb-0">
-                                        Intégration de <strong>Recharts</strong> pour générer des graphiques dynamiques
-                                        : Pie Chart pour la répartition et Bar Chart pour l'intensité quotidienne.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Build System -->
-                            <div class="col-md-12">
-                                <div class="card glass h-100 p-3">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <span class="fs-4 me-2">📦</span>
-                                        <h5 class="h6 text-white mb-0">Build & Release</h5>
-                                    </div>
-                                    <div class="d-flex gap-4">
-                                        <p class="small text-muted mb-0">
-                                            Configuration de scripts npm personnalisés pour builder l'application sur
-                                            toutes les architectures cibles :
-                                        </p>
-                                        <div class="small text-white-50 font-monospace">
-                                            npm run build:mac:arm<br>
-                                            npm run build:win:intel
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3. Gestion de la Donnée -->
-                    <div class="mb-5">
-                        <h2 class="h3 text-white mb-3">3. Gestion des Données</h2>
-                        <p class="text-muted small mb-2">
-                            L'application inclut un système d'export/import JSON complet pour permettre la sauvegarde
-                            manuelle ou le transfert de données entre deux machines.
-                        </p>
-                        <div class="card glass border-0 overflow-hidden">
-                            <pre class="m-0"><code class="language-typescript">// Exemple d'interface de données
+        <!-- 4. GESTION DES DONNÉES -->
+        <section class="detail-section">
+            <div class="section-row reverse">
+                <div class="section-text">
+                    <h2>💾 Gestion des Données</h2>
+                    <p>
+                        L'application inclut un système d'<strong>export/import JSON</strong> complet pour permettre la
+                        sauvegarde manuelle ou le transfert de données entre deux machines.
+                    </p>
+                    <p style="font-size: 0.95rem; margin-top: 1.5rem;">
+                        <strong>Stockage 100% local</strong> : Toutes les données sont stockées en JSON sur
+                        l'ordinateur. Aucun cloud requis, aucune donnée transmise à des serveurs externes.
+                    </p>
+                    <div class="code-block">
+                        <pre><code>// Exemple d'interface de données
 interface AppState {
     categories: Category[];
     logs: TimeLog[];     // Historique complet
@@ -325,25 +573,56 @@ interface AppState {
         startTime: number;
     } | null;
 }</code></pre>
-                        </div>
                     </div>
-
+                </div>
+                <div>
+                    <div class="info-card" style="margin-top: 0;">
+                        <h6>🔧 Stack Technique</h6>
+                        <ul>
+                            <li><strong>Electron</strong> : Main process (accès système)</li>
+                            <li><strong>React + Vite</strong> : Interface utilisateur</li>
+                            <li><strong>Context API</strong> : Gestion d'état globale</li>
+                            <li><strong>TypeScript</strong> : Typage statique</li>
+                            <li><strong>Recharts</strong> : Graphiques interactifs</li>
+                            <li><strong>date-fns & uuid</strong> : Utilitaires</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h6>📦 Plateformes supportées</h6>
+                        <ul>
+                            <li>Windows ARM / Intel (exe)</li>
+                            <li>macOS ARM / Intel (dmg)</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- CTA - CODE SOURCE -->
+        <section class="cta-section">
+            <h2>Découvrir le code source</h2>
+            <a href="https://github.com/Sudo-Bato/TimeTracker" target="_blank" rel="noopener noreferrer"
+                class="cta-btn">
+                <i class="fab fa-github"></i>
+                <span>Voir sur GitHub</span>
+            </a>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem;">
+                Code source complet et disponibles
+            </p>
+        </section>
+
+    </main>
 
     <!-- Footer -->
-    <footer class="text-center py-4 glass border-top border-secondary border-opacity-10">
-        <div class="container">
-            <p class="mb-0 text-muted small">&copy; 2026 Léo Vieux. Tous droits réservés.</p>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Léo Vieux. Tous droits réservés.</p>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
