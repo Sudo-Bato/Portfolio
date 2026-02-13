@@ -1,186 +1,101 @@
-# Portfolio Ultra Moderne - Léo Vieux 🚀
+# Portfolio Professionnel - Léo Vieux 🚀
 
-Portfolio moderne et animé pour un développeur full-stack. Conçu avec des animations fluides, des effets visuels impressionnants et une expérience utilisateur premium.
+Portfolio moderne, dynamique et hautement interactif conçu pour mettre en valeur mon parcours de développeur full-stack. Ce projet utilise des technologies web de pointe pour offrir une expérience utilisateur premium.
 
-![Portfolio](https://img.shields.io/badge/Portfolio-Live-success?style=for-the-badge)
+![Portfolio Live](https://img.shields.io/badge/Portfolio-Live-success?style=for-the-badge)
+![BTS SIO SLAM](https://img.shields.io/badge/BTS_SIO-SLAM-blue?style=for-the-badge)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-## ✨ Fonctionnalités
+## ✨ Points Forts du Projet
 
-- 🎨 **Design Ultra Moderne** - Interface premium avec glassmorphism et gradients animés
-- 🌌 **Particules Animées** - Fond dynamique avec Particles.js
-- 🎭 **Animations Fluides** - GSAP, AOS et animations CSS personnalisées
-- 📱 **100% Responsive** - Parfaitement adapté mobile, tablette et desktop
-- ⚡ **Performance Optimisée** - Chargement rapide et animations 60fps
-- ♿ **Accessible** - Navigation au clavier et mode réduit de mouvement
-- 🎯 **Single Page App** - Navigation fluide sans rechargement
+- 🎨 **Design System Avancé** - Interface immersive utilisant le glassmorphism, des effets de flou et des dégradés dynamiques.
+- 🌌 **Fond Animé** - Intégration de `Particles.js` pour un arrière-plan vivant et réactif.
+- 🎭 **Animations de Haut Niveau** - Utilisation combinée de GSAP, AOS et d'animations CSS haute performance (60fps).
+- 📱 **Mobile-First & Ultra Responsive** - Adaptation parfaite sur tous les terminaux grâce à un système de media queries rigoureux.
+- 🎯 **Architecture SPA (Single Page App)** - Navigation fluide sans rechargement de page pour une expérience utilisateur continue.
+- 🛡️ **Performance & Accessibilité** - Score Lighthouse élevé, optimisation des actifs et respect des bonnes pratiques.
 
-## 📂 Structure du Projet
+## 📂 Organisation du Code
 
-```
-PF-Test/
-├── index.html              # Page principale
+```text
+Portfolio/
+├── index.html              # Point d'entrée principal (SPA)
+├── assets/                 # Ressources statiques (images, PDF, favicons)
 ├── css/
-│   ├── main.css           # Styles principaux et design system
-│   ├── animations.css     # Animations personnalisées
-│   └── responsive.css     # Media queries responsive
+│   ├── main.css           # Core Design System & Layout
+│   ├── animations.css     # Bibliothèque d'animations complexes
+│   └── responsive.css     # Adaptations mobiles et tablettes
 ├── js/
-│   ├── main.js           # Navigation et fonctionnalités core
-│   └── animations.js     # Animations GSAP avancées
-└── README.md             # Documentation
+│   ├── main.js           # Logique applicative & Particles.js
+│   └── animations.js     # Orchestration des animations GSAP
+├── projets/               # Pages de détails pour les projets personnels
+└── stage/                 # Pages de détails pour les expériences en entreprise
 ```
 
-## 🎨 Design System
+## 🚀 Stack Technologique
 
-### Palette de Couleurs
-- **Primary**: `hsl(220, 90%, 56%)` - Bleu vibrant
-- **Secondary**: `hsl(280, 85%, 60%)` - Violet électrique
-- **Accent**: `hsl(340, 82%, 52%)` - Rose/Rouge
-- **Background**: `hsl(220, 20%, 10%)` - Fond sombre
+### Frontend & Design
+- **Core**: HTML5 Sémantique, CSS3 (Variables, Grid, Flexbox), Vanilla JS
+- **Animations**: [GSAP 3.12](https://greensock.com/gsap/), [AOS (Animate On Scroll)](https://michalsnik.github.io/aos/)
+- **Effets**: Particles.js, CSS Glassmorphism
+- **Typographie**: Poppins & Inter via Google Fonts
 
-### Typographie
-- **Headings**: Poppins (700, 600)
-- **Body**: Inter (400, 500, 600)
+### Projets en Vitrine
+Ce portfolio présente plusieurs projets clés utilisant des technologies variées :
+- **MédiYpno (Stage Ermes)**: Plateforme VOD (Vue.js, Node.js, Docker, FFmpeg, Stripe)
+- **TimeTracker**: App Desktop (Electron, React, TypeScript)
+- **Campus Connecté**: Système de gestion (PHP 8, MariaDB, Docker)
 
-## 🚀 Technologies Utilisées
+## 🛠️ Installation Locale
 
-### Core
-- HTML5 - Structure sémantique
-- CSS3 - Animations natives, Grid, Flexbox
-- JavaScript (Vanilla) - Interactions dynamiques
-
-### Bibliothèques
-- **[GSAP 3.12.5](https://greensock.com/gsap/)** - Animations complexes et fluides
-- **[Particles.js](https://vincentgarreau.com/particles.js/)** - Particules animées
-- **[AOS](https://michalsnik.github.io/aos/)** - Animate On Scroll
-- **[Font Awesome 6.5.1](https://fontawesome.com/)** - Icônes vectorielles
-
-## 📱 Sections du Portfolio
-
-1. **🏠 Accueil** - Présentation héro avec animations
-2. **🎓 CV** - Timeline formations et expériences
-3. **💻 Projets** - Grille de projets personnels et scolaires
-4. **💼 Stages** - Détails des stages professionnels
-5. **🔍 Veille Technologique** - Timeline de technologies
-6. **📧 Contact** - Informations de contact et liens sociaux
-
-## 🛠️ Installation
-
-Aucune installation nécessaire ! Ouvrez simplement `index.html` dans votre navigateur.
+Le projet est conçu pour être léger et peut être consulté sans serveur de build complexe.
 
 ```bash
-# Cloner le repository
-git clone <votre-repo-url>
+# Cloner le dépôt
+git clone https://github.com/Sudo-Bato/Portfolio.git
 
-# Naviguer dans le dossier
-cd PF-Test
+# Entrer dans le dossier
+cd Portfolio
 
-# Ouvrir dans le navigateur
+# Ouvrir le projet
+# Sur Mac :
 open index.html
+# Sur Windows :
+start index.html
 ```
 
-## 🌐 Déploiement sur GitHub Pages
+## 🌐 Déploiement
 
-1. Créez un repository GitHub
-2. Poussez votre code
+Le site est optimisé pour un déploiement sur **GitHub Pages**. Toutes les routes sont relatives pour assurer une compatibilité parfaite avec le sous-dossier de déploiement GitHub.
 
-```bash
-git init
-git add .
-git commit -m "Initial commit - Portfolio ultra moderne"
-git branch -M main
-git remote add origin <votre-repo-url>
-git push -u origin main
-```
+## 🎨 Styles & Personnalisation
 
-3. Activez GitHub Pages :
-   - Allez dans **Settings** > **Pages**
-   - Source : **Deploy from a branch**
-   - Branch : **main** / **(root)**
-   - Sauvegardez
-
-Votre portfolio sera disponible à : `https://<votre-username>.github.io/<nom-du-repo>/`
-
-## ⚡ Optimisations
-
-- **CSS minifié** pour production
-- **Lazy loading** des sections
-- **Animations conditionnelles** selon performance
-- **Images optimisées** (WebP avec fallback)
-- **Preload des fonts** critiques
-
-## 🎯 Performance
-
-- ⚡ Lighthouse Score : 95+ Performance
-- 📊 First Contentful Paint : < 1.5s
-- 🎨 Animations : 60fps constant
-- 📱 Mobile-First approach
-
-## 🔧 Personnalisation
-
-### Modifier les couleurs
-Éditez les variables CSS dans `css/main.css` :
+Le projet utilise un système de variables centralisé dans `css/main.css` pour permettre une modification rapide du thème :
 
 ```css
 :root {
-    --primary: hsl(220, 90%, 56%);
-    --secondary: hsl(280, 85%, 60%);
-    /* ... */
+    --primary: hsl(220, 90%, 56%);    /* Bleu principal */
+    --secondary: hsl(280, 85%, 60%);  /* Violet accent */
+    --bg-dark: hsl(220, 20%, 10%);    /* Couleur de fond */
 }
 ```
 
-### Ajuster les animations
-Modifiez les paramètres dans `js/animations.js` :
+## 📞 Contact & Réseaux
 
-```javascript
-gsap.defaults({
-    ease: 'power2.out',
-    duration: 0.8
-});
-```
+**Léo Vieux** - Étudiant Développeur curieux et passionné de tech.
 
-### Configurer les particules
-Éditez la configuration dans `js/main.js` :
-
-```javascript
-particlesJS('particles-js', {
-    particles: {
-        number: { value: 80 },
-        // ...
-    }
-});
-```
-
-## 🌟 Animations Incluses
-
-- ✅ Fade In/Out
-- ✅ Slide In (Left/Right)
-- ✅ Scale & Bounce
-- ✅ 3D Card Tilt
-- ✅ Parallax Scroll
-- ✅ Typing Effect
-- ✅ Gradient Shift
-- ✅ Pulse & Glow
-- ✅ Magnetic Buttons
-- ✅ Ripple Effect
-
-## 📞 Contact
-
-**Léo Vieux** - Étudiant Développeur BTS SIO SLAM
-
-- 📧 Email: [leovieux.pro@gmail.com](mailto:leovieux.pro@gmail.com)
-- 💼 LinkedIn: [leo-vieux-a8023332](https://www.linkedin.com/in/leo-vieux-a8023332)
-- 🐙 GitHub: [Votre GitHub](#)
+- 🐙 **GitHub**: [Sudo-Bato](https://github.com/Sudo-Bato)
+- 💼 **LinkedIn**: [Léo Vieux](https://www.linkedin.com/in/leo-vieux-a80233327)
+- 📧 **E-mail**: [leovieux.pro@gmail.com](mailto:leovieux.pro@gmail.com)
 
 ## 📄 Licence
 
-Ce projet est libre de droits. N'hésitez pas à vous en inspirer pour votre propre portfolio !
+Ce projet est sous licence MIT. Libre à vous de l'utiliser et de le modifier.
 
 ---
-
 <div align="center">
-  <p>Fait avec ❤️ et beaucoup de ☕ par Léo Vieux</p>
+  <p>Conçu avec précision par Léo Vieux</p>
   <p>© 2026 - Tous droits réservés</p>
 </div>
