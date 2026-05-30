@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CanisPro Éducation - Léo Vieux</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <style>
+        /* Page-specific styles */
+        .detail-page {
+            background: var(--bg-dark);
+            min-height: 100vh;
+        }
+
+        .detail-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 18, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+        }
+
+        .detail-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .detail-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .detail-logo .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all var(--transition-normal);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            transform: translateX(-3px);
+        }
+
+        .detail-content {
+            margin-top: 80px;
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+
+        .detail-header {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-badge {
+            display: inline-block;
+            background: rgba(255, 84, 0, 0.2);
+            color: #ff5400;
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--radius-xl);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 84, 0, 0.3);
+        }
+
+        .detail-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .detail-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-intro {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .detail-section {
+            max-width: 1200px;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .section-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-row.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .section-row.reverse>*:first-child {
+            order: 2;
+        }
+
+        .section-row.reverse>*:last-child {
+            order: 1;
+        }
+
+        .section-text h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .detail-image {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .detail-image:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 1.5rem;
+        }
+
+        .info-card h6 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-card li {
+            color: var(--text-secondary);
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        .info-card li::before {
+            content: "✅";
+            margin-right: 0.5rem;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all var(--transition-normal);
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .detail-title {
+                font-size: 2.5rem;
+            }
+
+            .section-row,
+            .section-row.reverse {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-row.reverse>*:first-child,
+            .section-row.reverse>*:last-child {
+                order: 0;
+            }
+
+            .image-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="detail-page">
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navbar -->
+    <nav class="detail-navbar">
+        <div class="detail-nav-container">
+            <a href="../index.html" class="detail-logo">
+                <span class="gradient-text">LV</span>
+            </a>
+            <a href="../index.html#projets" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Retour au Portfolio</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="detail-content">
+
+        <!-- Header Section -->
+        <section class="detail-header">
+            <span class="detail-badge">Projet Deuxième année • Web Application</span>
+            <h1 class="detail-title">CanisPro Éducation</h1>
+            <h2 class="detail-subtitle">Plateforme moderne de gestion d'éducation canine</h2>
+            <p class="detail-intro">
+                Application web moderne développée pour numériser la gestion d'un centre d'éducation canine. <br>
+                Offre une plateforme intuitive pour les clients (propriétaires) et un Back-Office complet pour les administrateurs.
+            </p>
+            <div class="tech-tags" style="justify-content: center; margin-top: 2rem;">
+                <span class="tag">Symfony 8 (PHP)</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">Twig</span>
+                <span class="tag">Bootstrap 5</span>
+                <span class="tag">Architecture MVC</span>
+            </div>
+        </section>
+
+        <!-- 1. CONTEXTE ET OBJECTIFS -->
+        <section class="detail-section">
+            <div class="section-row">
+                <div class="detail-image">
+                    <img src="../assets/img/projects/CanisPro/page-acceuil.png" alt="Page d'accueil de CanisPro Éducation">
+                    <p class="image-caption">Page d'accueil : Bannière sombre avec accentuation orange vibrant.</p>
+                </div>
+                <div class="section-text">
+                    <h2>🎯 Le Besoin</h2>
+                    <p>
+                        L'éducation canine moderne se concentre sur le bien-être de l'animal et la relation avec son propriétaire, nécessitant un suivi rigoureux des séances (individuelles ou collectives), des inscriptions et des profils des chiens.
+                    </p>
+                    <p>
+                        L'objectif de <strong>CanisPro</strong> est de numériser cette gestion à travers un outil centralisé, professionnel et rassurant pour les clients.
+                    </p>
+                    <div class="info-card">
+                        <h6>Architecture globale :</h6>
+                        <ul>
+                            <li><strong>Espace Public</strong> : Accueil, Catalogue des cours, Inscription</li>
+                            <li><strong>Espace Membre</strong> : Tableau de bord, Gestion des chiens, Réservation</li>
+                            <li><strong>Espace Admin</strong> : Back-Office, Gestion pédagogique, Clientèle</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. UI / UX DESIGN -->
+        <section class="detail-section">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-family: var(--font-heading); font-size: 2rem; color: var(--text-primary);">
+                🎨 Choix UI / UX & Design
+            </h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                L'interface a été entièrement pensée pour dégager une image <strong>professionnelle, rassurante et dynamique</strong>. La typographie s'appuie sur Google Fonts (Montserrat & Inter) avec Font Awesome pour l'iconographie.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Palette de Couleurs</h3>
+                    <p>Teintes foncées (Bleu nuit/Noir) pour l'élégance et un <strong>Orange vibrant (#ff5400)</strong> comme couleur primaire d'accentuation.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Composants "Cards"</h3>
+                    <p>Utilisation massive de cartes avec de légères ombres portées pour structurer l'information de manière claire et lisible.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <h3>Navigation Fluide</h3>
+                    <p>Sidebars fixes (barre de navigation latérale) pour les espaces connectés permettant une expérience utilisateur rapide et intuitive.</p>
+                </div>
+            </div>
+
+            <div class="image-grid" style="margin-top: 3rem;">
+                <div class="detail-image">
+                    <img src="../assets/img/projects/CanisPro/pageDeConnexion.png" alt="Formulaire de connexion">
+                    <p class="image-caption">Formulaire de connexion épuré et centré avec des icônes dans les labels.</p>
+                </div>
+                <div class="detail-image">
+                    <img src="../assets/img/projects/CanisPro/catalogue-des-cours.png" alt="Catalogue des cours">
+                    <p class="image-caption">Catalogue des cours : Grille de cartes avec badges de niveaux (Débutant/Chiot).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ESPACE MEMBRE & CLIENTÈLE -->
+        <section class="detail-section">
+            <div class="section-row reverse">
+                <div class="section-text">
+                    <h2>🧑‍🤝‍🧑 Espace Membre (Client)</h2>
+                    <p>
+                        L'espace sécurisé du propriétaire lui permet de gérer toutes ses interactions avec le centre. Construit autour d'une barre de navigation latérale, le tableau de bord offre une vue d'ensemble immédiate.
+                    </p>
+                    <div class="info-card">
+                        <h6>Fonctionnalités Membre :</h6>
+                        <ul>
+                            <li><strong>Dashboard</strong> : Cartes de statistiques en couleur et accès rapides</li>
+                            <li><strong>Gestion des chiens</strong> : Ajouter, lister et modifier ses chiens</li>
+                            <li><strong>Inscriptions</strong> : Consultation et réservation aux séances disponibles</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="detail-image">
+                    <img src="../assets/img/projects/CanisPro/tableauBord-membre.png" alt="Tableau de bord Membre">
+                    <p class="image-caption" style="margin-top: 1rem;">Tableau de bord très visuel avec cartes statistiques.</p>
+                </div>
+            </div>
+            
+            <!-- Additional Client View -->
+            <div class="image-grid grid-single" style="margin-top: 3rem;">
+                <div class="detail-image">
+                    <img src="../assets/img/projects/CanisPro/page-mes-chiens.png" alt="Page Mes Chiens" style="max-height: 600px; object-fit: cover;">
+                    <p class="image-caption" style="margin-top: 1rem;">Affichage sous forme de cartes de chaque chien enregistré avec icône 🐕.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ESPACE ADMINISTRATEUR -->
+        <section class="detail-section" style="margin-top: 5rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem; font-family: var(--font-heading); font-size: 2rem; color: var(--text-primary);">
+                🛠️ Back-Office Administrateur
+            </h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Un espace de gestion complet permettant au centre de piloter son activité quotidienne, ses cours, ses séances et de suivre l'ensemble de sa clientèle.
+            </p>
+
+            <div class="image-grid grid-single" style="gap: 4rem;">
+                <div class="detail-image">
+                    <img src="../assets/img/projects/CanisPro/tableauDeBordAdmin.png" alt="Tableau de bord Admin">
+                    <p class="image-caption" style="font-size: 1rem; margin-top: 1rem;">Dashboard Admin : Statistiques globales (utilisateurs, chiens, cours) et raccourcis d'actions rapides.</p>
+                </div>
+                <div class="detail-image">
+                    <img src="../assets/img/projects/CanisPro/GestionDesSeancesAdmin.png" alt="Tableau des séances Admin">
+                    <p class="image-caption" style="font-size: 1rem; margin-top: 1rem;">Gestion des séances : Indicateur visuel (barre de progression) des places restantes et boutons d'actions modernes.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Léo Vieux. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>
